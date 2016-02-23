@@ -1,42 +1,43 @@
 var path = require('path')
 var webpack = require('webpack')
+var publicPath = 'http://localhost:4001'
 
-var env = process.env.NODE_ENV
-var prod = env === 'production'
-var dev = env === 'development'
+var env = process.env.MIX_ENV
+var prod = env === 'prod'
+var dev = env === 'dev'
 
 var plugins = [
   new webpack.NoErrorsPlugin(),
   new webpack.DefinePlugin({
     __PROD: prod,
     __DEV: dev
-  })
+  }),
+  new webpack.optimize.OccurenceOrderPlugin()
 ]
 
-if (!prod) {
+if (dev) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
-} else {
-  plugins.push(new webpack.optimize.OccurenceOrderPlugin())
+} else if (prod) {
   plugins.push(new webpack.optimize.UglifyJsPlugin({
     compressor: { warnings: false }
   }))
 }
 
-var hotClient = 'webpack-hot-middleware/client'
-var entry = { index: './src/client/index.js' }
+var hot = 'webpack-hot-middleware/client?path=' +
+  publicPath + '__webpack_hmr'
+var entry = { index: './web/static/js/index.js' }
 
 module.exports = {
-  devtool: prod ? null : 'cheap-eval-source-map',
+  devtool: prod ? null : 'eval-source-map',
   entry: Object.keys(entry).reduce((entries, key) => {
     entries[key] = prod
       ? entry[key]
-      : [entry[key], hotClient]
-    return entries
+      : [entry[key], hot]
   }, {}),
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'priv/static/js'),
     filename: '[name].bundle.js',
-    publicPath: '/'
+    publicPath: publicPath
   },
   plugins: plugins,
   module: {
@@ -58,7 +59,9 @@ module.exports = {
         addDependencyTo: webpack
       }),
       require('postcss-simple-vars'),
-      require('postcss-nested')
+      require('postcss-nested'),
+      require('postcss-browser-reporter')(),
+      require('postcss-reporter')()
     ]
   }
 }
