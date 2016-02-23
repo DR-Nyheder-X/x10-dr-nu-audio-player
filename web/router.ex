@@ -15,7 +15,6 @@ defmodule App.Router do
 
   scope "/", App do
     pipe_through :browser
-
     get "*path", PageController, :index
   end
 end
