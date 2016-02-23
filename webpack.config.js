@@ -50,6 +50,16 @@ module.exports = {
         loader: 'style!css!postcss'
       }
     ]
+  },
+  postcss: function () {
+    return [
+      require('autoprefixer'),
+      require('postcss-import')({
+        addDependencyTo: webpack
+      }),
+      require('postcss-simple-vars'),
+      require('postcss-nested')
+    ]
   }
 }
 

@@ -1,0 +1,6 @@
+$bg: purple;
+
+body {
+  background-color: $bg;
+  color: white
+}
