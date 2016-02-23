@@ -61,14 +61,15 @@ module.exports = {
   },
   postcss: function () {
     return [
+      require('postcss-browser-reporter')(),
+      require('postcss-reporter')(),
       require('autoprefixer'),
       require('postcss-import')({
         addDependencyTo: webpack
       }),
-      require('postcss-simple-vars'),
       require('postcss-nested'),
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')()
+      require('postcss-sassy-mixins')(),
+      require('postcss-simple-vars')
     ]
   }
 }

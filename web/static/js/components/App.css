@@ -1,6 +1,10 @@
 $bg: purple;
 
+@mixin bg($color) {
+  background-color: $color;
+}
+
 body {
-  background-color: $bg;
+  @include bg($bg);
   color: white
 }
