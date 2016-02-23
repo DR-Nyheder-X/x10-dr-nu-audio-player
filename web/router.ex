@@ -13,6 +13,11 @@ defmodule App.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api/v1", App do
+    pipe_through :api
+    get "/playlists", Api.V1.PlaylistController, :index
+  end
+
   scope "/", App do
     pipe_through :browser
     get "*path", PageController, :index
