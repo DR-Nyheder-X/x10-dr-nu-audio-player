@@ -1,0 +1,48 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "NODE_ENV=production forever index.js",
+    "dev": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js -w src/server",
+    "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p",
+    "test": "echo 'yes'",
+    "lint": "./node_modules/standard/bin/cmd.js",
+    "postinstall": "./bin/build-if-prod"
+  },
+  "dependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-polyfill": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "debug": "^2.2.0",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "postcss-loader": "^0.8.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^4.0.0",
+    "redux": "^3.3.1",
+    "redux-simple-promise": "^2.0.2",
+    "redux-thunk": "^1.0.3",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.14"
+  },
+  "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "babel-preset-react-hmre": "^1.1.0",
+    "nodemon": "^1.9.0",
+    "redux-logger": "^2.6.0",
+    "standard": "^6.0.7",
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-hot-middleware": "^2.7.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
