@@ -6,11 +6,11 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import configureStore from './store'
+import configureStore from '../store'
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
-import routes from './routes'
+import routes from '../routes'
 
 const mount = document.getElementById('root')
 render(
