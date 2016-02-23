@@ -1,10 +1,16 @@
 var path = require('path')
 var webpack = require('webpack')
-var publicPath = 'http://localhost:4001'
+var publicPath = 'http://localhost:4001/'
 
-var env = process.env.MIX_ENV
+// ENV juggling
+
+var env = process.env.MIX_ENV || 'dev'
 var prod = env === 'prod'
 var dev = env === 'dev'
+process.env.NODE_ENV = ({
+  dev: 'development',
+  prod: 'production'
+})[env] || env
 
 var plugins = [
   new webpack.NoErrorsPlugin(),
@@ -29,10 +35,11 @@ var entry = { index: './web/static/js/index.js' }
 
 module.exports = {
   devtool: prod ? null : 'eval-source-map',
-  entry: Object.keys(entry).reduce((entries, key) => {
+  entry: Object.keys(entry).reduce(function (entries, key) {
     entries[key] = prod
       ? entry[key]
       : [entry[key], hot]
+    return entries
   }, {}),
   output: {
     path: path.resolve(__dirname, 'priv/static/js'),
