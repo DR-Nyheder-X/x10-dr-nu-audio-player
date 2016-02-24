@@ -7,7 +7,7 @@ var publicPath = 'http://localhost:4001/'
 var env = process.env.MIX_ENV || 'dev'
 var prod = env === 'prod'
 var dev = env === 'dev'
-process.env.NODE_ENV = ({
+var nodeEnv = process.env.NODE_ENV = ({
   dev: 'development',
   prod: 'production'
 })[env] || env
@@ -15,6 +15,7 @@ process.env.NODE_ENV = ({
 var plugins = [
   new webpack.NoErrorsPlugin(),
   new webpack.DefinePlugin({
+    'process.env': {NODE_ENV: JSON.stringify(nodeEnv)},
     __PROD: prod,
     __DEV: dev
   }),
@@ -51,8 +52,8 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
-        exclude: path.resolve(__dirname, 'node_modules')
+        loader: 'babel',
+        exclude: /node_modules/
       }, {
         test: /\.css$/,
         loader: 'style!css!postcss'
