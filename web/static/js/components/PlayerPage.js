@@ -4,15 +4,38 @@ import { Link } from 'react-router'
 import Controls from '../Controls'
 
 export default class PlayerPage extends Component {
+
+  constructor (props) {
+    super(props)
+
+    this.play = this.play.bind(this)
+    this.pause = this.pause.bind(this)
+    this.prev = this.prev.bind(this)
+    this.next = this.next.bind(this)
+  }
+
   componentDidMount () {
     this.player = findDOMNode(this.refs.player)
 
     Controls
-    .on('play', () => { this.player.play() })
-    .on('pause', () => { this.player.pause() })
-    .on('prev', () => { this.player.currentTime = 0 })
-    .on('next', () => { this.player.currentTime = 0 })
+    .on('play', this.play)
+    .on('pause', this.pause)
+    .on('prev', this.prev)
+    .on('next', this.next)
   }
+
+  componentWillUnmount () {
+    Controls
+    .off('play', this.play)
+    .off('pause', this.pause)
+    .off('prev', this.prev)
+    .off('next', this.next)
+  }
+
+  play () { this.player.play() }
+  pause () { this.player.pause() }
+  prev () { this.player.currentTime = 0 }
+  next () { this.player.currentTime = 0 }
 
   render () {
     return <div>
