@@ -27,6 +27,7 @@ export function next () {
 
 export const init = {
   tracks: [
+    { title: 'Breaker', href: 'http://s3.brnbw.com/-Jingle-breaker.mp3' },
     { title: 'Inside my Pants', href: 'http://s3.brnbw.com/03-Inside-My-Pants.mp3' },
     { title: 'Sweatshop', href: 'http://s3.brnbw.com/02-Sweatshop.mp3' },
     { title: 'Indiana', href: 'http://s3.brnbw.com/02-Indiana.mp3' }
@@ -78,6 +79,8 @@ class PlayerPage extends Component {
     this.pause = this.pause.bind(this)
     this.prev = this.prev.bind(this)
     this.next = this.next.bind(this)
+
+    this.handleEnded = this.handleEnded.bind(this)
   }
 
   componentDidMount () {
@@ -101,12 +104,23 @@ class PlayerPage extends Component {
   prev () { this.props.dispatch(prev()) }
   next () { this.props.dispatch(next()) }
 
+  handleEnded (event) {
+    this.props.dispatch(next())
+  }
+
   render () {
     const { tracks, playing, currentTrack } = this.props
+    const track = tracks[currentTrack || 0]
 
     return <div>
       <p><Link to='/'>Tilbage</Link></p>
-      <Player {...{ tracks, playing, currentTrack }} />
+      <Player
+        src={track.href}
+        playing={playing}
+        onPlaying={() => this.props.dispatch(play())}
+        onPause={() => this.props.dispatch(pause())}
+        onEnded={this.handleEnded}
+      />
       <ul>
         {tracks.map((track, i) => (
           <li key={i}>
