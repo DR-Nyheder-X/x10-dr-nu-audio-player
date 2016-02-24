@@ -5,8 +5,7 @@
     "dev": "NODE_ENV=development ./node_modules/nodemon/bin/nodemon.js -w src/server",
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js -p",
     "test": "echo 'yes'",
-    "lint": "./node_modules/standard/bin/cmd.js",
-    "postinstall": "./bin/build-if-prod"
+    "lint": "./node_modules/standard/bin/cmd.js"
   },
   "dependencies": {
     "autoprefixer": "^6.3.3",
