@@ -1,9 +1,75 @@
-import React, { Component } from 'react'
-import { findDOMNode } from 'react-dom'
+import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import Controls from '../Controls'
+import Player from './Player'
+import { connect } from 'react-redux'
+import { register } from '../store'
 
-export default class PlayerPage extends Component {
+export const PLAY = 'player/PLAY'
+export function play () {
+  return { type: PLAY }
+}
+
+export const PAUSE = 'player/PAUSE'
+export function pause () {
+  return { type: PAUSE }
+}
+
+export const PREV = 'player/PREV'
+export function prev () {
+  return { type: PREV }
+}
+
+export const NEXT = 'player/NEXT'
+export function next () {
+  return { type: NEXT }
+}
+
+export const init = {
+  tracks: [
+    { title: 'Inside my Pants', href: 'http://s3.brnbw.com/03-Inside-My-Pants.mp3' },
+    { title: 'Sweatshop', href: 'http://s3.brnbw.com/02-Sweatshop.mp3' },
+    { title: 'Indiana', href: 'http://s3.brnbw.com/02-Indiana.mp3' }
+  ],
+  playing: false,
+  currentTrack: 0
+}
+
+export const reducer = function playerReducer (state = init, action) {
+  switch (action.type) {
+    case PLAY: return { ...state, playing: true }
+    case PAUSE: return { ...state, playing: false }
+    case PREV: {
+      const { tracks, currentTrack } = state
+      const index = currentTrack - 1
+      const track = tracks[index] && index || 0
+      return { ...state, currentTrack: track }
+    }
+    case NEXT: {
+      const { tracks, currentTrack } = state
+      const index = currentTrack + 1
+      const track = tracks[index] && index || tracks.length - 1
+      return { ...state, currentTrack: track }
+    }
+    default: return state
+  }
+}
+
+register(reducer, 'player')
+
+const stateToProps = state => ({
+  tracks: state.player.tracks,
+  playing: state.player.playing,
+  currentTrack: state.player.currentTrack
+})
+
+class PlayerPage extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    playing: PropTypes.bool.isRequired,
+    currentTrack: PropTypes.number
+  }
 
   constructor (props) {
     super(props)
@@ -15,8 +81,6 @@ export default class PlayerPage extends Component {
   }
 
   componentDidMount () {
-    this.player = findDOMNode(this.refs.player)
-
     Controls
     .on('play', this.play)
     .on('pause', this.pause)
@@ -32,17 +96,27 @@ export default class PlayerPage extends Component {
     .off('next', this.next)
   }
 
-  play () { this.player.play() }
-  pause () { this.player.pause() }
-  prev () { this.player.currentTime = 0 }
-  next () { this.player.currentTime = 0 }
+  play () { this.props.dispatch(play()) }
+  pause () { this.props.dispatch(pause()) }
+  prev () { this.props.dispatch(prev()) }
+  next () { this.props.dispatch(next()) }
 
   render () {
+    const { tracks, playing, currentTrack } = this.props
+
     return <div>
       <p><Link to='/'>Tilbage</Link></p>
-      <audio ref='player' controls>
-        <source src='/dummy/audio.mp3' type='audio/mp3' />
-      </audio>
+      <Player {...{ tracks, playing, currentTrack }} />
+      <ul>
+        {tracks.map((track, i) => (
+          <li key={i}>
+            {i === currentTrack &&
+              <strong>{track.title}</strong>}
+            {i !== currentTrack &&
+              <span>{track.title}</span>}
+          </li>
+        ))}
+      </ul>
       <ul>
         <li><button onClick={Controls.play}>Play</button></li>
         <li><button onClick={Controls.pause}>Pause</button></li>
@@ -52,3 +126,5 @@ export default class PlayerPage extends Component {
     </div>
   }
 }
+
+export default connect(stateToProps)(PlayerPage)
