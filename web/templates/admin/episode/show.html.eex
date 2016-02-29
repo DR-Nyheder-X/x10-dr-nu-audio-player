@@ -1,0 +1,11 @@
+<div>
+  <%= link {:safe, "&larr; Back"}, to: admin_episode_path(@conn, :index) %>
+  <%= link "Edit", to: admin_episode_path(@conn, :edit, @episode) %>
+  <%= link "Delete", to: admin_episode_path(@conn, :delete, @episode), method: 'delete', data: [confirm: "Yes?"] %>
+</div>
+
+<h1><%= @episode.headline %></h1>
+<p><%= @episode.description %></p>
+<p>Duration: <%= @episode.duration %></p>
+<p><audio src='<%= @episode.audio_url %>' controls></p>
+<p><%= @episode.authors %></p>

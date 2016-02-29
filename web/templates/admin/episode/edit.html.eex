@@ -1,0 +1,9 @@
+<p><%= link {:safe, "&larr; Back"}, to: admin_episode_path(@conn, :index) %></p>
+<h1>Edit episode</h1>
+<%= form_for @changeset, admin_episode_path(@conn, :update, @changeset.model), fn f -> %>
+  <%= render "fields.html", f: f %>
+  <div>
+    <%= submit "Update episode", class: "btn btn-primary mr2" %>
+    <%= link "Delete", to: admin_episode_path(@conn, :delete, @changeset.model), method: 'delete', class: "ml1 red", data: [confirm: "Yes?"] %>
+  </div>
+<% end %>

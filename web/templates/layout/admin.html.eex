@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DR NU</title>
+  </head>
+  <body>
+    <div class="max-width-3 mx-auto">
+      <%= render @view_module, @view_template, assigns %>
+    </div>
+    <%= if Mix.env == :dev do %>
+      <script src="//localhost:4001/admin.bundle.js"></script>
+    <% else %>
+      <script src="<%= static_path(@conn, "/js/admin.bundle.js") %>"></script>
+    <% end %>
+  </body>
+</html>

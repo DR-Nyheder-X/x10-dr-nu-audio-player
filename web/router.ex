@@ -18,6 +18,13 @@ defmodule App.Router do
     get "/playlists", Api.V1.PlaylistController, :index
   end
 
+  scope "/admin", App, as: :admin do
+    pipe_through :browser
+
+    resources "/episodes", Admin.EpisodeController
+    get "/", Admin.EpisodeController, :index
+  end
+
   scope "/", App do
     pipe_through :browser
     get "*path", PageController, :index

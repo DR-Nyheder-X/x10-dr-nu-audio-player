@@ -1,0 +1,33 @@
+<h1>Episodes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Headline</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th>Audio</th>
+      <th>Authors</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for episode <- @episodes do %>
+      <tr>
+        <td><%= String.slice(episode.headline, 0, 100) %></td>
+        <td><%= String.slice(episode.description, 0, 100) %></td>
+        <td><%= episode.duration %></td>
+        <td><%= episode.audio_url %></td>
+        <td><%= episode.authors %></td>
+        <td>
+          <%= link "Edit", to: admin_episode_path(@conn, :edit, episode) %>
+          <%= link "Delete", to: admin_episode_path(@conn, :delete, episode), method: 'delete', data: [confirm: "Yes?"] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link "Create episode", to: admin_episode_path(@conn, :new), class: "btn" %>
+</p>

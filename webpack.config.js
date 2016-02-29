@@ -32,7 +32,10 @@ if (dev) {
 
 var hot = 'webpack-hot-middleware/client?path=' +
   publicPath + '__webpack_hmr'
-var entry = { index: './web/static/js/index.js' }
+var entry = {
+  index: './web/static/js/index.js',
+  admin: './web/static/js/admin.js'
+}
 
 module.exports = {
   devtool: prod ? null : 'eval-source-map',
@@ -62,15 +65,16 @@ module.exports = {
   },
   postcss: function () {
     return [
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')(),
-      require('autoprefixer'),
+      require('autoprefixer')(),
       require('postcss-import')({
         addDependencyTo: webpack
       }),
-      require('postcss-nested'),
+      require('postcss-nested')(),
       require('postcss-sassy-mixins')(),
-      require('postcss-simple-vars')
+      require('postcss-simple-vars')(),
+      require('postcss-cssnext')(),
+      require('postcss-browser-reporter')(),
+      require('postcss-reporter')()
     ]
   }
 }

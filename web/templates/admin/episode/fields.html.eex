@@ -1,0 +1,20 @@
+<p>
+  <%= textarea @f, :headline, placeholder: "Headline", class: "textarea", rows: 5 %>
+  <%= error_tag @f, :headline %>
+</p>
+<p>
+  <%= textarea @f, :description, placeholder: "Description", class: "textarea", rows: 10 %>
+  <%= error_tag @f, :description %>
+</p>
+<p>
+  <%= text_input @f, :duration, placeholder: "Duration", class: "input" %>
+  <%= error_tag @f, :duration %>
+</p>
+<p>
+  <%= text_input @f, :audio_url, placeholder: "Audio url", class: "input" %>
+  <%= error_tag @f, :audio_url %>
+</p>
+<p>
+  <%= text_input @f, :authors, placeholder: "Authors", class: "input" %>
+  <%= error_tag @f, :authors %>
+</p>
