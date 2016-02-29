@@ -13,9 +13,9 @@ defmodule App.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api/v1", App do
+  scope "/api/v1", App, as: :api do
     pipe_through :api
-    get "/playlists", Api.V1.PlaylistController, :index
+    resources "/episodes", Api.V1.EpisodeController, only: [:index]
   end
 
   scope "/admin", App, as: :admin do
