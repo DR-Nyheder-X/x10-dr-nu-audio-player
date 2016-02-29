@@ -7,7 +7,7 @@ defmodule App.Factory do
       headline: "Headline",
       description: "Description",
       duration: "1:00",
-      audio_url: "http://example.com",
+      audio: "http://example.com",
       authors: "A & B"
     }
   end

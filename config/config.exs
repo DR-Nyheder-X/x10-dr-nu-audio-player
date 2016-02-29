@@ -27,3 +27,8 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :arc,
+  bucket: "brnbw-drex",
+  virtual_host: true
+

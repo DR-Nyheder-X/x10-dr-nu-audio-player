@@ -6,7 +6,7 @@ defmodule App.Repo.Migrations.CreateEpisode do
       add :headline, :text
       add :description, :text
       add :duration, :string
-      add :audio_url, :text
+      add :audio, :text
       add :authors, :string
 
       timestamps

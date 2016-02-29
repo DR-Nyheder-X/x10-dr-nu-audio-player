@@ -11,8 +11,11 @@
   <%= error_tag @f, :duration %>
 </p>
 <p>
-  <%= text_input @f, :audio_url, placeholder: "Audio url", class: "input" %>
-  <%= error_tag @f, :audio_url %>
+  <label class='label'>
+    Audio file:
+    <%= file_input @f, :audio, placeholder: "Audio url", class: "file" %>
+  </label>
+  <%= error_tag @f, :audio %>
 </p>
 <p>
   <%= text_input @f, :authors, placeholder: "Authors", class: "input" %>

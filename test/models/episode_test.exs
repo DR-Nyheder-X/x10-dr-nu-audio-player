@@ -3,11 +3,16 @@ defmodule App.EpisodeTest do
 
   alias App.Episode
 
-  @valid_attrs %{audio_url: "some content", authors: "some content", description: "some content", duration: 42, headline: "some content"}
+  @valid_attrs %{authors: "some content", description: "some content", duration: "1:00", headline: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = Episode.changeset(%Episode{}, @valid_attrs)
+    file = %Plug.Upload{path: "test/fixtures/audio.mp3", filename: "audio.mp3"}
+
+    changeset = Episode.changeset(%Episode{}, Map.merge(@valid_attrs, %{
+      audio: file
+    }))
+
     assert changeset.valid?
   end
 
