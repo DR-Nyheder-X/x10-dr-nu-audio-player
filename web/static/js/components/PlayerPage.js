@@ -117,8 +117,6 @@ class PlayerPage extends Component {
       <Player
         src={track.href}
         playing={playing}
-        onPlaying={() => this.props.dispatch(play())}
-        onPause={() => this.props.dispatch(pause())}
         onEnded={this.handleEnded}
       />
       <ul>

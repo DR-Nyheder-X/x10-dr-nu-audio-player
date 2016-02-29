@@ -7,7 +7,7 @@ const init = {
 }
 
 const mappedEvents = [
-  'playing', 'timeupdate', 'ended', 'loadstart', 'loadedmetadata'
+  'playing', 'pause', 'timeupdate', 'ended', 'loadstart', 'loadedmetadata'
 ]
 
 export default class Player extends Component {
@@ -93,7 +93,7 @@ export default class Player extends Component {
     const { elapsed, total } = this.state
 
     return <div>
-      <audio ref='player' controls src={src} />
+      <audio ref='player' src={src} />
       <h1>{secondsToTime(elapsed)} / {secondsToTime(total)}</h1>
     </div>
   }
