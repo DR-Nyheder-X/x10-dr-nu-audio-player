@@ -1,10 +1,5 @@
-$bg: purple;
+@import '../utilities/base';
 
-@mixin bg($color) {
-  background-color: $color;
-}
-
-body {
-  @include bg($bg);
-  color: white
+.App {
+  background-color: $backgroundColor;
 }
