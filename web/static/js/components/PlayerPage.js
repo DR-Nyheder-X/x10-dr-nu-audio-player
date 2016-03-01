@@ -4,6 +4,16 @@ import Controls from '../Controls'
 import Player from './Player'
 import { connect } from 'react-redux'
 import { register } from '../store'
+import { get } from '../api'
+import { resolve } from 'redux-simple-promise'
+
+export const FETCH_EPISODES = 'player/FETCH_EPISODES'
+export function fetchEpisodes () {
+  return {
+    type: FETCH_EPISODES,
+    payload: { promise: get('/episodes') }
+  }
+}
 
 export const PLAY = 'player/PLAY'
 export function play () {
@@ -26,30 +36,33 @@ export function next () {
 }
 
 export const init = {
-  tracks: [
-    { title: 'Breaker', href: 'http://s3.brnbw.com/-Jingle-breaker.mp3' },
-    { title: 'Inside my Pants', href: 'http://s3.brnbw.com/03-Inside-My-Pants.mp3' },
-    { title: 'Sweatshop', href: 'http://s3.brnbw.com/02-Sweatshop.mp3' },
-    { title: 'Indiana', href: 'http://s3.brnbw.com/02-Indiana.mp3' }
-  ],
+  episodes: [],
   playing: false,
   currentTrack: 0
 }
 
 export const reducer = function playerReducer (state = init, action) {
   switch (action.type) {
-    case PLAY: return { ...state, playing: true }
-    case PAUSE: return { ...state, playing: false }
+    case resolve(FETCH_EPISODES):
+      return { ...state, episodes: action.payload.data }
+    case PLAY:
+      if (state.episodes.length === 0) return state
+      return { ...state, playing: true }
+    case PAUSE:
+      if (state.episodes.length === 0) return state
+      return { ...state, playing: false }
     case PREV: {
-      const { tracks, currentTrack } = state
+      if (state.episodes.length === 0) return state
+      const { episodes, currentTrack } = state
       const index = currentTrack - 1
-      const track = tracks[index] && index || 0
+      const track = episodes[index] && index || 0
       return { ...state, currentTrack: track }
     }
     case NEXT: {
-      const { tracks, currentTrack } = state
+      if (state.episodes.length === 0) return state
+      const { episodes, currentTrack } = state
       const index = currentTrack + 1
-      const track = tracks[index] && index || tracks.length - 1
+      const track = episodes[index] && index || episodes.length - 1
       return { ...state, currentTrack: track }
     }
     default: return state
@@ -58,8 +71,8 @@ export const reducer = function playerReducer (state = init, action) {
 
 register(reducer, 'player')
 
-const stateToProps = state => ({
-  tracks: state.player.tracks,
+const stateToProps = (state) => ({
+  episodes: state.player.episodes,
   playing: state.player.playing,
   currentTrack: state.player.currentTrack
 })
@@ -67,7 +80,7 @@ const stateToProps = state => ({
 class PlayerPage extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    tracks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    episodes: PropTypes.arrayOf(PropTypes.object).isRequired,
     playing: PropTypes.bool.isRequired,
     currentTrack: PropTypes.number
   }
@@ -89,6 +102,8 @@ class PlayerPage extends Component {
     .on('pause', this.pause)
     .on('prev', this.prev)
     .on('next', this.next)
+
+    this.props.dispatch(fetchEpisodes())
   }
 
   componentWillUnmount () {
@@ -109,23 +124,25 @@ class PlayerPage extends Component {
   }
 
   render () {
-    const { tracks, playing, currentTrack } = this.props
-    const track = tracks[currentTrack || 0]
+    const { episodes, playing, currentTrack } = this.props
+    const track = episodes[currentTrack || 0]
 
     return <div>
       <p><Link to='/'>Tilbage</Link></p>
-      <Player
-        src={track.href}
-        playing={playing}
-        onEnded={this.handleEnded}
-      />
+      {track &&
+        <Player
+          src={track.audio}
+          playing={playing}
+          onEnded={this.handleEnded}
+        />
+      }
       <ul>
-        {tracks.map((track, i) => (
+        {episodes.map((track, i) => (
           <li key={i}>
             {i === currentTrack &&
-              <strong>{track.title}</strong>}
+              <strong>{track.headline}</strong>}
             {i !== currentTrack &&
-              <span>{track.title}</span>}
+              <span>{track.headline}</span>}
           </li>
         ))}
       </ul>
