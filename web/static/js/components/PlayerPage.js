@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
-import Controls from '../Controls'
+import {
+  PLAY, PAUSE, PREV, NEXT,
+  play, pause, prev, next
+} from '../Controls'
 import Player from './Player'
 import { connect } from 'react-redux'
 import { register } from '../store'
@@ -13,26 +15,6 @@ export function fetchEpisodes () {
     type: FETCH_EPISODES,
     payload: { promise: get('/episodes') }
   }
-}
-
-export const PLAY = 'player/PLAY'
-export function play () {
-  return { type: PLAY }
-}
-
-export const PAUSE = 'player/PAUSE'
-export function pause () {
-  return { type: PAUSE }
-}
-
-export const PREV = 'player/PREV'
-export function prev () {
-  return { type: PREV }
-}
-
-export const NEXT = 'player/NEXT'
-export function next () {
-  return { type: NEXT }
 }
 
 export const init = {
@@ -88,47 +70,22 @@ class PlayerPage extends Component {
   constructor (props) {
     super(props)
 
-    this.play = this.play.bind(this)
-    this.pause = this.pause.bind(this)
-    this.prev = this.prev.bind(this)
-    this.next = this.next.bind(this)
-
     this.handleEnded = this.handleEnded.bind(this)
   }
 
   componentDidMount () {
-    Controls
-    .on('play', this.play)
-    .on('pause', this.pause)
-    .on('prev', this.prev)
-    .on('next', this.next)
-
     this.props.dispatch(fetchEpisodes())
   }
-
-  componentWillUnmount () {
-    Controls
-    .off('play', this.play)
-    .off('pause', this.pause)
-    .off('prev', this.prev)
-    .off('next', this.next)
-  }
-
-  play () { this.props.dispatch(play()) }
-  pause () { this.props.dispatch(pause()) }
-  prev () { this.props.dispatch(prev()) }
-  next () { this.props.dispatch(next()) }
 
   handleEnded (event) {
     this.props.dispatch(next())
   }
 
   render () {
-    const { episodes, playing, currentTrack } = this.props
+    const { episodes, playing, currentTrack, dispatch } = this.props
     const track = episodes[currentTrack || 0]
 
-    return <div>
-      <p><Link to='/'>Tilbage</Link></p>
+    return <div id='PlayerPage'>
       {track &&
         <Player
           src={track.audio}
@@ -147,10 +104,10 @@ class PlayerPage extends Component {
         ))}
       </ul>
       <ul>
-        <li><button onClick={Controls.play}>Play</button></li>
-        <li><button onClick={Controls.pause}>Pause</button></li>
-        <li><button onClick={Controls.prev}>Prev</button></li>
-        <li><button onClick={Controls.next}>Next</button></li>
+        <li><button onClick={() => dispatch(play())}>Play</button></li>
+        <li><button onClick={() => dispatch(pause())}>Pause</button></li>
+        <li><button onClick={() => dispatch(prev())}>Prev</button></li>
+        <li><button onClick={() => dispatch(next())}>Next</button></li>
       </ul>
     </div>
   }

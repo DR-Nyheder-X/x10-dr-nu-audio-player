@@ -10,6 +10,9 @@ import configureStore from './store'
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
+import Controls from './Controls'
+window.Controls = new Controls(store)
+
 import routes from './routes'
 
 render(
@@ -18,3 +21,4 @@ render(
   </Provider>,
   document.getElementById('root')
 )
+
