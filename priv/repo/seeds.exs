@@ -59,7 +59,7 @@ Repo.insert!(%Episode{
 Repo.insert!(%Episode{
   headline: "Hvad er grunden til at hvalen i Blokhus er strandet?",
   description: "Biologer er begyndt at skære den hval op som er strandet i Blokhus, for at afgøre, hvorfor den er strandet.",
-  duration: "1.44",
+  duration: "1:44",
   authors: "Ida Lind",
   audio: "http://brnbw-drex.s3.amazonaws.com/seed/Hval.mp3"
 })
@@ -67,7 +67,7 @@ Repo.insert!(%Episode{
 Repo.insert!(%Episode{
   headline: "Hvorfor skal du ikke logge på andres wi-fi?",
   description: "At andre kan hacke dig, hvis du logger på ukendt wi-fi, er måske ikke ukendt. Men efter en undersøgelse til en mobilmesse i Barcelona, så har man fundet ud af, at vi alligevel logger på andres wi-fi.",
-  duration: "",
+  duration: "2:36",
   authors: "Oliver Breum",
   audio: "http://brnbw-drex.s3.amazonaws.com/seed/IT-Sikkerhed.mp3"
 })
@@ -75,7 +75,7 @@ Repo.insert!(%Episode{
 Repo.insert!(%Episode{
   headline: "Hvad ville du sige til, at betale for dit næste køb på nettet med en selfie?",
   description: "Mastercard har lige meldt ud, at de nu vil bruge selfies som et alternativ til passwords, når deres kunder skal bekræfte deres identitet på nettet.",
-  duration: "1.21",
+  duration: "1:21",
   authors: "Anna Sofie ",
   audio: "http://brnbw-drex.s3.amazonaws.com/seed/Mastercard%20selfie.mp3"
 })
@@ -91,7 +91,7 @@ Repo.insert!(%Episode{
 Repo.insert!(%Episode{
   headline: "Hvordan er Popcorn Time genopstået?",
   description: "Sidste år blev den ulovlige streaming-tjeneste Popcorn Time lukket efter et sagsanlæg fra den amerikanske filmindustri. Men nu er den tilbage.  ",
-  duration: "1.57",
+  duration: "1:57",
   authors: "Ida Lind",
   audio: "http://brnbw-drex.s3.amazonaws.com/seed/Pop-Corn%20Time.mp3"
 })
