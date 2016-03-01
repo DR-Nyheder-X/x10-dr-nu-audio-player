@@ -16,3 +16,11 @@ $ npm install
 ```sh
 $ iex -S mix phoenix.server
 ```
+
+### data
+
+Drop the database and recreate it with test data.
+
+```sh
+$ mix ecto.reset
+```

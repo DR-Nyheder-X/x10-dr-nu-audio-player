@@ -121,10 +121,67 @@ Repo.insert!(%Episode{
 })
 
 Repo.insert!(%Episode{
+  headline: "Hvordan kan Virtual Reality afhjælpe din fobi?",
+  description: "Du skal se din frygt i øjnene, hvis du vil komme over den. Men det kan være lettere sagt end gjort, hvis man lider af en fobi.",
+  duration: "02:05",
+  authors: "Ida Lind",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/Virtual%20fobi.mp3"
+})
+
+Repo.insert!(%Episode{
+  headline: "Hvorfor er Lars Løkke Rasmussen så snedig?",
+  description: "Statsministeren var tvunget til at lave en ministerrokade, efter Eva Kjer Hansen gik af. Men lavede Lars Løkke Rasmussen i virkeligheden mere end en ministerrokade?",
+  duration: "02:37",
+  authors: "Oliver Breum",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/Snedig%20Lars%20L%C3%B8kke.mp3"
+})
+
+Repo.insert!(%Episode{
+  headline: "HOT Vinter",
+  description: "Det har været en meget varm vinter, selvom det måske har føltes koldt på det sidste. Vi fortæller dig, hvordan det har været en varm vinter",
+  duration: "02:07",
+  authors: "Oliver Breum",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/HOT%20Vinter.mp3"
+})
+
+Repo.insert!(%Episode{
+  headline: "Seksualitet som en sygdom i Danmark",
+  description: "Transkønnethed er stadig en psykisk sygdom i Danmark. Vi kigger lidt nærmere på behandlingen.",
+  duration: "03:04",
+  authors: "Oliver Breum",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/Transseksuel.mp3"
+})
+
+Repo.insert!(%Episode{
   headline: "Hvad sker der hvis Apple hacker deres egne telefoner?",
   description: "FBI har ønsket Apples hjælp til at hacke deres egne telefoner. Det har Apple afvist. Nu er der faldet foreløbig dom. ",
   duration: "02:50",
   authors: "Jennifer Krames",
   audio: "http://brnbw-drex.s3.amazonaws.com/seed/Apple%20Sikkerhed.mp3"
 })
+
+Repo.insert!(%Episode{
+  headline: "Hvorfor går det så godt for LEGO?",
+  description: "For andet år i træk leverer LEGO et rekordstort overskud, men hvordan kan den jyske virksomhed blive ved?",
+  duration: "01:47",
+  authors: "Ida Lind",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/LEGO.mp3"
+})
+
+Repo.insert!(%Episode{
+  headline: "Hvad skal der ske med de tomme bygge grunde?",
+  description: "Jagtvej 69 har nu stået tom i ni år. Socialdemokraterne i københanvsborgerrepræsentation vil indføre byggepligt på kommunens bygge grunde for undgå dette i fremtiden.",
+  duration: "02:03",
+  authors: "Jennifer Krames",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/Jagtvej%2069.mp3"
+})
+
+Repo.insert!(%Episode{
+  headline: "Hvorfor er Åge Hareide den rette landstræner?",
+  description: "Åge Hareide har i dag første arbejdsdag som dansk landstræner. Han mener selv, at han har opskriften på underholdende fodbold og fyldte tribuner.",
+  duration: "02:38",
+  authors: "Niklas Jakobsen",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/%C3%85ge%20Hareide.mp3"
+})
+
 
