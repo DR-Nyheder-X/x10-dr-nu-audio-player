@@ -19,7 +19,7 @@ defmodule App.Mixfile do
   def application do
     [mod: {App, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison]]
+                    :phoenix_ecto, :postgrex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,10 +38,6 @@ defmodule App.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.9"},
       {:cowboy, "~> 1.0"},
-      {:arc, "~> 0.4.1"},
-      {:arc_ecto, "~> 0.3.2"},
-      {:ex_aws, "~> 0.4.10"},
-      {:httpoison, "~> 0.8.1"},
 
       {:ex_machina, "~> 0.6.1", only: :test}
     ]

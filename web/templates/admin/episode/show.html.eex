@@ -7,5 +7,5 @@
 <h1><%= @episode.headline %></h1>
 <p><%= @episode.description %></p>
 <p>Duration: <%= @episode.duration %></p>
-<p><audio src='<%= App.Audio.url({@episode.audio, @episode}) %>' controls></p>
+<p><audio src='<%= @episode.audio %>' controls></p>
 <p><%= @episode.authors %></p>

@@ -17,6 +17,3 @@ config :app, App.Repo,
   database: "app_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
-
-config :arc,
-  definition: Arc.Storage.Local

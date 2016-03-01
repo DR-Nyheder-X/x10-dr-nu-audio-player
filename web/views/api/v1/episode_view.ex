@@ -15,7 +15,7 @@ defmodule App.Api.V1.EpisodeView do
       headline: episode.headline,
       description: episode.description,
       duration: episode.duration,
-      audio: App.Audio.url({episode.audio, episode}),
+      audio: episode.audio,
       authors: episode.authors
     }
   end
