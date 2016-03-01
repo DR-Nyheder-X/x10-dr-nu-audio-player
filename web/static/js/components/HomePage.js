@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { get } from '../api'
 import { register } from '../store'
@@ -44,7 +43,9 @@ class HomePage extends Component {
     return <div>
       <h1>Home</h1>
       {episodes.map((episode) => (
-        <blockquote>{episode.headline}</blockquote>
+        <blockquote key={episode.id}>
+          {episode.headline}
+        </blockquote>
       ))}
     </div>
   }
