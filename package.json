@@ -20,6 +20,7 @@
     "basscss-btn-primary": "^1.1.0",
     "basscss-colors": "^2.1.0",
     "basscss-forms": "^1.0.0",
+    "classname": "0.0.0",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
