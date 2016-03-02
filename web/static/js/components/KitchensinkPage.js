@@ -8,7 +8,7 @@ export default class KitchensinkPage extends Component {
 
     return <div>
       <Tabs />
-      <Card />
+      <Card>Hvorfor er du ikke startet til palæo-yoga endnu?</Card>
       <Toggle>Boobs</Toggle>
       <Toggle>Tofu</Toggle>
       <Toggle>Spaceships</Toggle>

@@ -94,7 +94,7 @@ export default class Player extends Component {
 
     return <div>
       <audio ref='player' src={src} />
-      <h1>{secondsToTime(elapsed)} / {secondsToTime(total)}</h1>
+      {secondsToTime(elapsed)} / {secondsToTime(total)}
     </div>
   }
 }
