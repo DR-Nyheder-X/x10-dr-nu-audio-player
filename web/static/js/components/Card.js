@@ -6,7 +6,7 @@ import './Card.css'
 
 export default function Card ({ big, children }) {
   const cls = classname('Card', {
-    'Card-isBig': big
+    'is-big': big
   })
 
   return <div className={cls}>
