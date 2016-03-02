@@ -5,8 +5,8 @@ import classname from 'classname'
 
 export default function Tabs ({ path }) {
   const cls = classname('Tabs', {
-    'Tabs--firstTabIsActive': path === '/',
-    'Tabs--secondTabIsActive': path === '/categories'
+    'is-firstTabActive': path === '/',
+    'is-secondTabActive': path === '/categories'
   })
 
   return <div className={cls}>

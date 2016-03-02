@@ -46,13 +46,13 @@
   transition: fill .15s ease .1s;
 }
 
-.Tabs.Tabs--firstTabIsActive {
+.Tabs.is-firstTabActive {
   .Tabs-highlighter { left: 0; }
   .Tabs-tab--first { color: $brandColorPrimary; }
   .Tabs-tab--first svg > g { fill: $brandColorPrimary; }
 }
 
-.Tabs.Tabs--secondTabIsActive {
+.Tabs.is-secondTabActive {
   .Tabs-highlighter { left: 50%; }
   .Tabs-tab--second { color: $brandColorPrimary; }
   .Tabs-tab--second svg .a { fill: $brandColorPrimary; }
