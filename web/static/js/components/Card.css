@@ -16,10 +16,6 @@
   position: relative;
 }
 
-.Card-controlsAndTitle {
-
-}
-
 .Card-title {
   margin-top: -43px;
   margin-left: 62px;
@@ -42,7 +38,7 @@
 }
 
 /* Big state */
-.Card.Card-isBig {
+.Card.is-big {
   .Card-title {
     display: block;
     margin-top: 10px;

@@ -6,18 +6,14 @@ import './Card.css'
 export default class Card extends Component {
   render () {
 
-    return <div className='Card Card-isBig'>
+    return <div className='Card is-big'>
       <div className='Card-inner'>
 
         <div className='Card-content'>
-
-          <div className='Card-controlsAndTitle'>
-            <AudioControls />
-            <div className='Card-title'>
-              {this.props.children}
-            </div>
+          <AudioControls />
+          <div className='Card-title'>
+            {this.props.children}
           </div>
-
           <Progress />
         </div>
 
