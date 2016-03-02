@@ -38,6 +38,8 @@
 }
 
 /* Playing state */
-.AudioControls-isPlaying .AudioControls-play {
-  background-color: $brandColorPrimary;
+.AudioControls.is-playing {
+   .AudioControls-play {
+     background-color: $brandColorPrimary;
+   }
 }
