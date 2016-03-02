@@ -1,6 +1,6 @@
 export const PLAY = 'controls/PLAY'
-export function play () {
-  return { type: PLAY }
+export function play (episode) {
+  return { type: PLAY, payload: episode }
 }
 
 export const PAUSE = 'controls/PAUSE'

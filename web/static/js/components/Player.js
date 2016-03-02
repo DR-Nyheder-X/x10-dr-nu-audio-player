@@ -1,23 +1,85 @@
 import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
+import { connect } from 'react-redux'
+import { resolve } from 'redux-simple-promise'
+import { PLAY, PAUSE, play, pause, prev, next } from '../Controls'
+import { FETCH_EPISODES } from './PlaylistPage'
 import Progress from './Progress'
 
-const init = {
-  elapsed: 0,
-  total: 0
+export const ENDED = 'player/ENDED'
+export function ended () {
+  return { type: ENDED }
 }
+
+export const ELAPSED = 'player/ELAPSED'
+export function elapsed ({episode, time}) {
+  return { type: ELAPSED, payload: {episode, time} }
+}
+
+export const SET_DURATION = 'player/SET_DURATION'
+export function setDuration ({episode, duration}) {
+  return { type: SET_DURATION, payload: {episode, duration} }
+}
+
+export const init = {
+  elapsed: {},
+  duration: {},
+  playing: false,
+  currentEpisode: null
+}
+
+export const reducer = function playerReducer (state = init, action) {
+  switch (action.type) {
+
+    case PLAY: return {
+      ...state,
+      playing: true,
+      currentEpisode: action.payload || state.currentEpisode
+    }
+
+    case PAUSE:
+      return { ...state, playing: false }
+
+    case ELAPSED: return {
+      ...state,
+      elapsed: {
+        ...state.elapsed,
+        [action.payload.episode.id]: action.payload.time
+      }
+    }
+
+    case SET_DURATION: return {
+      ...state,
+      duration: {
+        ...state.duration,
+        [action.payload.episode.id]: action.payload.duration
+      }
+    }
+
+    case resolve(FETCH_EPISODES):
+      return { ...state, currentEpisode: action.payload.data[0] || null }
+
+    default: return state
+  }
+}
+
+const stateToProps = (state) => ({
+  elapsed: state.app.player.elapsed,
+  duration: state.app.player.duration,
+  playing: state.app.player.playing,
+  currentEpisode: state.app.player.currentEpisode
+})
 
 const mappedEvents = [
   'playing', 'pause', 'timeupdate', 'ended', 'loadstart', 'loadedmetadata'
 ]
 
-export default class Player extends Component {
+class Player extends Component {
   static propTypes = {
-    src: PropTypes.string,
-    playing: PropTypes.bool,
-    onPlaying: PropTypes.func,
-    onPause: PropTypes.func,
-    onEnded: PropTypes.func
+    elapsed: PropTypes.object.isRequired,
+    duration: PropTypes.object.isRequired,
+    playing: PropTypes.bool.isRequired,
+    currentEpisode: PropTypes.object
   }
 
   constructor (props) {
@@ -28,8 +90,6 @@ export default class Player extends Component {
     mappedEvents.forEach((event) => {
       this[event] = this[event].bind(this)
     })
-
-    this.state = init
   }
 
   componentDidMount () {
@@ -63,60 +123,63 @@ export default class Player extends Component {
   // Audio events
 
   playing (event) {
-    const { onPlaying } = this.props
-    onPlaying && onPlaying(event)
+    // const { onPlaying } = this.props
+    // onPlaying && onPlaying(event)
   }
 
   pause (event) {
-    const { onPause } = this.props
-    onPause && onPause(event)
+    // const { onPause } = this.props
+    // onPause && onPause(event)
   }
 
   ended (event) {
-    const { onEnded } = this.props
-    onEnded && onEnded(event)
+    const { dispatch, currentEpisode } = this.props
+    dispatch(ended(currentEpisode))
   }
 
   timeupdate (event) {
-    this.setState({ elapsed: event.target.currentTime })
+    const { dispatch, currentEpisode } = this.props
+    dispatch(elapsed({
+      episode: currentEpisode,
+      time: event.target.currentTime
+    }))
   }
 
   loadstart (event) {
-    this.setState(init)
+    const { dispatch, currentEpisode } = this.props
+    dispatch(setDuration({
+      episode: currentEpisode,
+      duration: 0
+    }))
   }
 
   loadedmetadata (event) {
-    this.setState({ total: event.target.duration })
+    const { dispatch, currentEpisode } = this.props
+    dispatch(setDuration({
+      episode: currentEpisode,
+      duration: event.target.duration
+    }))
   }
 
   render () {
-    const { src } = this.props
-    const { elapsed, total } = this.state
+    const DEBUG = false
+    const { dispatch, currentEpisode } = this.props
 
     return <div>
-      <audio ref='player' src={src} />
-      <Progress percent={total / 100 * elapsed}>
-        {secondsToTime(total)}
-      </Progress>
+      {DEBUG && <div>
+        <button onClick={() => dispatch(play())}>Play</button>
+        <button onClick={() => dispatch(pause())}>Pause</button>
+        <button onClick={() => dispatch(prev())}>Prev</button>
+        <button onClick={() => dispatch(next())}>Next</button>
+      </div>}
+
+      <audio ref='player'
+        controls={DEBUG}
+        src={currentEpisode && currentEpisode.audio}
+      />
     </div>
   }
 }
 
-function secondsToTime (secs) {
-  secs = Math.floor(secs)
-  let hours = Math.floor(secs / 3600)
-  let minutes = Math.floor((secs - (hours * 3600)) / 60)
-  let seconds = secs - (hours * 3600) - (minutes * 60)
+export default connect(stateToProps)(Player)
 
-  if (hours < 10) { hours = '0' + hours }
-  if (minutes < 10) { minutes = '0' + minutes }
-  if (seconds < 10) { seconds = '0' + seconds }
-
-  let result = minutes + ':' + seconds
-
-  if (hours > 0) {
-    result = hours + ':' + result
-  }
-
-  return result
-}
