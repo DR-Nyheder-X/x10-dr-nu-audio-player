@@ -10,6 +10,7 @@ import CategoriesPage from './components/CategoriesPage'
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={PlaylistPage} />
+    <Route path='/player' component={CategoriesPage} />
     <Route path='/categories' component={CategoriesPage} />
     {__DEV &&
       <Route
