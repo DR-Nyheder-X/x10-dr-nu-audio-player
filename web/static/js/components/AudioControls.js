@@ -4,7 +4,7 @@ import './AudioControls.css'
 export default class AudioControls extends Component {
   render () {
 
-    return <div className="AudioControls">
+    return <div className='AudioControls'>
       controls
     </div>
   }

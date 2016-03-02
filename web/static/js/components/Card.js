@@ -6,7 +6,7 @@ import './Card.css'
 export default class Card extends Component {
   render () {
 
-    return <div className="Card Card-isClosed">
+    return <div className='Card Card-isClosed'>
 
       <div className='Card-title'>
         <AudioControls />
