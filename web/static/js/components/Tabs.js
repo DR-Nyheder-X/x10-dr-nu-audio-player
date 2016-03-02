@@ -6,7 +6,7 @@ export default class Tabs extends Component {
 
     return <div className='Tabs Tabs--secondTabIsActive'>
       <div className='Tabs-inner'>
-        <div className='Tabs-tab Tabs-tab--first'><i></i>
+        <div className='Tabs-tab Tabs-tab--first'>
           <svg width='23px' height='19px' viewBox='0 0 23 19'>
             <g id='sound' fill='#7F7F7F'>
               <rect x='4' y='6' width='3' height='7' rx='1'></rect>
