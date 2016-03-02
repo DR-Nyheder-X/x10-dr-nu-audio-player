@@ -7,13 +7,17 @@ export default class Card extends Component {
   render () {
 
     return <div className='Card Card-isClosed'>
+      <div className='Card-inner'>
 
-      <div className='Card-title'>
-        <AudioControls />
-        {this.props.children}
-        <Progress />
+        <div className='Card-content'>
+          <div className='Card-title'>
+            <AudioControls />
+            {this.props.children}
+            <Progress />
+          </div>
+        </div>
+
       </div>
-
     </div>
   }
 }

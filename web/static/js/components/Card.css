@@ -2,8 +2,16 @@
 @import '../utilities/mixins';
 
 .Card {
-  @include onBox;
+  margin-bottom: $spaceXs;
   margin-right: $spaceM;
   margin-left: $spaceM;
-  margin-bottom: $spaceXs;
+}
+
+.Card-inner {
+  @include indentBox;
+}
+
+.Card-content {
+  @include onBox;
+  position: relative;
 }
