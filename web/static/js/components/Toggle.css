@@ -15,11 +15,11 @@
   right: 1.1em;
 }
 
-.Toggle--isOn {
+.Toggle.is-on {
   @include onBox;
 }
 
-.Toggle--isOff {
+.Toggle.is-off {
   @include offBox;
   color: #8C8C8C;
   svg > path { fill: #B2B2B2; }

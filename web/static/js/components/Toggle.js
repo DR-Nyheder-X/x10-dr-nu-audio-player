@@ -4,8 +4,8 @@ import './Toggle.css'
 
 export default function Toggle ({ checked, onClick, children }) {
   const cls = classname('Toggle', {
-    'Toggle--isOn': checked,
-    'Toggle--isOff': !checked
+    'is-on': checked,
+    'is-off': !checked
   })
 
   return <div className={cls} onClick={onClick}>
