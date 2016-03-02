@@ -37,57 +37,7 @@
   opacity: 0;
 }
 
-/* Big state */
-.AudioControls.AudioControls-isBig {
-  height: 150px;
-  width: 100%;
-}
-
-.AudioControls-isBig .AudioControls-play {
-  width: 100px;
-  height: 100px;
-  left: 50%;
-  top: 30px;
-  margin-left: -50px;
-  z-index: 1;
-}
-
-.AudioControls-isBig .AudioControls-skipBack,
-.AudioControls-isBig .AudioControls-next {
-  width: 68px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 55px;
-  margin-left: -34px;
-  opacity: 1;
-  transition: width .2s ease,
-              height .2s ease,
-              opacity .2s ease .1s,
-              margin .2s ease .1s;
-
-  label { display: block; }
-
-  svg {
-    position: absolute;
-    top: .85em;
-    left: 0;
-  }
-}
-
-.AudioControls-isBig .AudioControls-skipBack {
-  margin-left: -137px;
-
-  svg {
-    left: auto;
-    right: 0;
-  }
-}
-
-.AudioControls-isBig .AudioControls-next {
-  margin-left: 70px;
-}
-
 /* Playing state */
+.AudioControls-isPlaying .AudioControls-play {
+  background-color: $brandColorPrimary;
+}

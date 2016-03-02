@@ -15,3 +15,97 @@
   @include onBox;
   position: relative;
 }
+
+.Card-controlsAndTitle {
+
+}
+
+.Card-title {
+  margin-top: -43px;
+  margin-left: 62px;
+  min-height: 2.55em;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  left: 0;
+  transform: translateZ(0);
+  transition: margin-top .2s ease,
+              margin-bottom .2s ease,
+              margin-left .2s ease,
+              min-height .2s ease,
+              left .2s ease;
+
+  @media (min-width: 375px) { width: 254px; }
+  @media (min-width: 414px) { width: 293px; }
+}
+
+/* Big state */
+.Card.Card-isBig {
+  .Card-title {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 3px;
+    min-height: 0;
+    text-align: center;
+    left: 50%;
+    margin-left: -100px;
+    @media (min-width: 375px) { margin-left: -127px; }
+    @media (min-width: 414px) { margin-left: -146px; }
+  }
+
+  .AudioControls {
+    height: 138px;
+    width: 100%;
+  }
+
+  .AudioControls-play {
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 30px;
+    margin-left: -50px;
+    z-index: 1;
+    transform: translateZ(0);
+  }
+
+  .AudioControls-skipBack,
+  .AudioControls-next {
+    width: 68px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 55px;
+    margin-left: -34px;
+    opacity: 1;
+    transform: translateZ(0);
+    transition: width .1s ease,
+                height .1s ease,
+                opacity .2s ease .1s,
+                margin .2s ease .1s;
+
+    label { display: block; }
+
+    svg {
+      position: absolute;
+      top: .85em;
+      left: 0;
+    }
+  }
+
+  .AudioControls-skipBack {
+    margin-left: -137px;
+
+    svg {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  .AudioControls-next {
+    margin-left: 70px;
+  }
+}
