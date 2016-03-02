@@ -9,29 +9,13 @@ export default function Card ({ big, children }) {
     'Card-isBig': big
   })
 
-<<<<<<< HEAD
-    return <div className='Card is-big'>
-      <div className='Card-inner'>
-
-        <div className='Card-content'>
-          <AudioControls />
-          <div className='Card-title'>
-            {this.props.children}
-          </div>
-          <Progress />
-=======
   return <div className={cls}>
     <div className='Card-inner'>
       <div className='Card-content'>
-        <div className='Card-controlsAndTitle'>
-          <AudioControls />
-
-          <div className='Card-title'>
-            {children}
-          </div>
->>>>>>> origin/master
+        <AudioControls />
+        <div className='Card-title'>
+          {children}
         </div>
-
         <Progress />
       </div>
     </div>
