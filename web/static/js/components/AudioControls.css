@@ -28,6 +28,9 @@
               height .2s ease,
               margin .2s ease,
               background-color .2s ease;
+
+  /* Pause icon */
+  svg.pause { display: none; }
 }
 
 /* Play icon */
@@ -41,10 +44,22 @@
               height .2s ease;
 }
 
+/* Pause icon */
+.AudioControls .AudioControls-playButton svg.pause {
+  width: 12px;
+  height: 14px;
+  transition: width .2s ease,
+              height .2s ease;
+}
+
 
 /* Playing state */
 .AudioControls-playButton.is-playing {
   background-color: $brandColorPrimary;
+
+  svg.play { display: none; }
+
+  svg.pause { display: block; }
 }
 
 .AudioControls .AudioControls-skipBack,

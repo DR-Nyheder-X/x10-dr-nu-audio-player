@@ -73,6 +73,11 @@
     right: -.25em;
   }
 
+  .AudioControls-playButton svg.pause {
+    width: 25px;
+    height: 28px;
+  }
+
   .AudioControls-skipBack,
   .AudioControls-next {
     width: 68px;
