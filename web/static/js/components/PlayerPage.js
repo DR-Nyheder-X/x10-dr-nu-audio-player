@@ -75,7 +75,9 @@ class PlayerPage extends Component {
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchEpisodes())
+    if (this.props.episodes.length === 0) {
+      this.props.dispatch(fetchEpisodes())
+    }
   }
 
   handleEnded (event) {
@@ -91,15 +93,14 @@ class PlayerPage extends Component {
       <button onClick={() => dispatch(pause())}>Pause</button>
       <button onClick={() => dispatch(prev())}>Prev</button>
       <button onClick={() => dispatch(next())}>Next</button>
-      {track && <Player
-        src={track.audio}
-        playing={playing}
-        onEnded={this.handleEnded}
-      />}
       {episodes.map((episode, i) => (
-        <Card big={i === currentTrack} key={episode.id}>
-          {episode.headline}
-        </Card>
+        <Card
+          playing={i === currentTrack && playing}
+          key={episode.id}
+          episode={episode}
+          onPlay={() => dispatch()}
+          onEnded={() => dispatch()}
+        />
       ))}
     </div>
   }
