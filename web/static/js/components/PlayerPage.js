@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { resolve } from 'redux-simple-promise'
 import {
   PLAY, PAUSE, PREV, NEXT,
   play, pause, prev, next
 } from '../Controls'
 import Player from './Player'
-import { connect } from 'react-redux'
+import Card from './Card'
 import { register } from '../store'
 import { get } from '../api'
-import { resolve } from 'redux-simple-promise'
 
 export const FETCH_EPISODES = 'player/FETCH_EPISODES'
 export function fetchEpisodes () {
@@ -86,23 +87,16 @@ class PlayerPage extends Component {
     const track = episodes[currentTrack || 0]
 
     return <div id='PlayerPage'>
-      {track &&
-        <Player
-          src={track.audio}
-          playing={playing}
-          onEnded={this.handleEnded}
-        />
-      }
-      <ul>
-        {episodes.map((track, i) => (
-          <li key={i}>
-            {i === currentTrack &&
-              <strong>{track.headline}</strong>}
-            {i !== currentTrack &&
-              <span>{track.headline}</span>}
-          </li>
-        ))}
-      </ul>
+      {track && <Player
+        src={track.audio}
+        playing={playing}
+        onEnded={this.handleEnded}
+      />}
+      {episodes.map((episode, i) => (
+        <Card key={episode.id}>
+          {episode.headline}
+        </Card>
+      ))}
       <ul>
         <li><button onClick={() => dispatch(play())}>Play</button></li>
         <li><button onClick={() => dispatch(pause())}>Pause</button></li>
