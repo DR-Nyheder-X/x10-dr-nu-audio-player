@@ -5,14 +5,12 @@ import Toggle from './Toggle'
 
 export default class KitchensinkPage extends Component {
   render () {
-
     return <div>
-      <Tabs />
-      <Card>Hvor er Assens?</Card>
+
+      <Tabs path='/' />
       <Card>Hvorfor er du ikke startet til palæo-yoga endnu?</Card>
-      <Card>Hvad er meningen med livet, og hvorfor har du ikke lyst til at vide det?</Card>
-      <Toggle>Boobs</Toggle>
-      <Toggle>Tofu</Toggle>
+      <Toggle checked>Boobs</Toggle>
+      <Toggle checked={false}>Tofu</Toggle>
       <Toggle>Spaceships</Toggle>
     </div>
   }
