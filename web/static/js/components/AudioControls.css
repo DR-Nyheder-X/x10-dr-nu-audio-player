@@ -35,6 +35,11 @@
   height: 0;
   overflow: hidden;
   opacity: 0;
+
+  &:active {
+    color: $brandColorPrimary;
+    svg > path { fill: $brandColorPrimary; }
+  }
 }
 
 /* Playing state */
