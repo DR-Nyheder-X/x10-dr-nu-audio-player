@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import './Progress.css'
 
 export default function Progress ({ percent, children }) {
-  percent = parseInt(percent || 0, 10)
+  percent = parseFloat(percent || 0, 10)
 
   return <div className='Progress isPlaying'>
     <div className='Progress-rail'>
