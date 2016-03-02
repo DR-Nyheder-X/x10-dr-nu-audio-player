@@ -1,0 +1,59 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+.Tabs {
+  position: relative;
+  margin-right: $spaceM;
+  margin-left: $spaceM;
+  margin-bottom: $spaceXs;
+  margin-top: 1px;
+}
+
+.Tabs .Tabs-inner {
+  @include indentBox;
+  display: flex;
+}
+
+.Tabs .Tabs-tab {
+  width: 50%;
+  height: 40px;
+  color: #7F7F7F;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color .15s ease .1s;
+}
+
+.Tabs .Tabs-tab svg {
+  margin-right: .5em;
+}
+
+.Tabs .Tabs-highlighter {
+  @include onBox;
+  width: 50%;
+  height: 42px;
+  position: absolute;
+  top: -1px;
+  left: 0;
+  z-index: 0;
+  transition: left .15s ease;
+}
+
+.Tabs-tab--first svg > g,
+.Tabs-tab--second svg circle {
+  transition: fill .15s ease .1s;
+}
+
+.Tabs.Tabs--firstTabIsActive {
+  .Tabs-highlighter { left: 0; }
+  .Tabs-tab--first { color: $brandColorPrimary; }
+  .Tabs-tab--first svg > g { fill: $brandColorPrimary; }
+}
+
+.Tabs.Tabs--secondTabIsActive {
+  .Tabs-highlighter { left: 50%; }
+  .Tabs-tab--second { color: $brandColorPrimary; }
+  .Tabs-tab--second svg .a { fill: $brandColorPrimary; }
+  .Tabs-tab--second svg .b { fill: #C4C4C4; }
+}
