@@ -1,0 +1,77 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+.AudioControls {
+  position: relative;
+  height: 36px;
+  background-color: orange;
+}
+
+.AudioControls .AudioControls-play {
+  width: 36px;
+  height: 36px;
+  background-color: #E8E8E8;
+  border-radius: 100%;
+  position: absolute;
+  left: 14px;
+  top: 0;
+  transition: left .2s ease,
+              background-color .2s ease;
+}
+
+.AudioControls .AudioControls-skipBack,
+.AudioControls .AudioControls-next {
+  margin-left: 0;
+  top: 0px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.AudioControls.AudioControls-isPlaying {
+  height: 100px;
+}
+
+.AudioControls-isPlaying .AudioControls-play {
+  width: 100px;
+  height: 100px;
+  background-color: $brandColorPrimary;
+  left: 50%;
+  margin-left: -50px;
+  z-index: 1;
+}
+
+.AudioControls-isPlaying .AudioControls-skipBack,
+.AudioControls-isPlaying .AudioControls-next {
+  width: 68px;
+  height: 60px;
+  background-color: teal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 25px;
+  margin-left: -34px;
+
+  label { display: block; }
+
+  svg {
+    position: absolute;
+    top: .85em;
+    left: 0;
+  }
+}
+
+.AudioControls-isPlaying .AudioControls-skipBack {
+  margin-left: -130px;
+
+  svg {
+    left: auto;
+    right: 0;
+  }
+}
+
+.AudioControls-isPlaying .AudioControls-next {
+  margin-left: 62px;
+}
