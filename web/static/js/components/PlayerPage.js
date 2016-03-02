@@ -93,7 +93,7 @@ class PlayerPage extends Component {
         onEnded={this.handleEnded}
       />}
       {episodes.map((episode, i) => (
-        <Card key={episode.id}>
+        <Card big={i === currentTrack} key={episode.id}>
           {episode.headline}
         </Card>
       ))}

@@ -1,29 +1,31 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
+import classname from 'classname'
 import AudioControls from './AudioControls'
 import Progress from './Progress'
 import './Card.css'
 
-export default class Card extends Component {
-  render () {
+export default function Card ({ big, children }) {
+  const cls = classname('Card', {
+    'Card-isBig': big
+  })
 
-    return <div className='Card Card-isBig'>
-      <div className='Card-inner'>
+  return <div className={cls}>
+    <div className='Card-inner'>
+      <div className='Card-content'>
+        <div className='Card-controlsAndTitle'>
+          <AudioControls />
 
-        <div className='Card-content'>
-
-          <div className='Card-controlsAndTitle'>
-            <AudioControls />
-            <div className='Card-title'>
-              {this.props.children}
-            </div>
+          <div className='Card-title'>
+            {children}
           </div>
-
-          <Progress />
         </div>
 
+        <Progress />
       </div>
     </div>
-  }
+  </div>
 }
 
-module.exports = Card
+Card.propTypes = {
+  big: PropTypes.bool
+}
