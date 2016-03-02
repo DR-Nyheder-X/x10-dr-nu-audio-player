@@ -4,7 +4,7 @@ import './Progress.css'
 export default class Progress extends Component {
   render () {
 
-    return <div className='Progress Progress-isPlaying'>
+    return <div className='Progress is-playing'>
       <div className='Progress-rail'>
         <div className='Progress-bar' style={{width: '34%'}}></div>
       </div>

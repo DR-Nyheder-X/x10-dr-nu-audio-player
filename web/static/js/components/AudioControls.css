@@ -10,7 +10,11 @@
               width .2s ease;
 }
 
-.AudioControls .AudioControls-play {
+.AudioControls .AudioControls-playButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   width: 36px;
   height: 36px;
   background-color: #E8E8E8;
@@ -24,6 +28,23 @@
               height .2s ease,
               margin .2s ease,
               background-color .2s ease;
+}
+
+/* Play icon */
+.AudioControls .AudioControls-playButton svg.play {
+  width: 12px;
+  height: 14px;
+  position: relative;
+  right: -.125em;
+  transition: right .2s ease,
+              width .2s ease,
+              height .2s ease;
+}
+
+
+/* Playing state */
+.AudioControls-playButton.is-playing {
+  background-color: $brandColorPrimary;
 }
 
 .AudioControls .AudioControls-skipBack,
@@ -40,11 +61,4 @@
     color: $brandColorPrimary;
     svg > path { fill: $brandColorPrimary; }
   }
-}
-
-/* Playing state */
-.AudioControls.is-playing {
-   .AudioControls-play {
-     background-color: $brandColorPrimary;
-   }
 }

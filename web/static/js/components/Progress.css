@@ -48,7 +48,7 @@
   min-width: 38px;
 }
 
-.Progress-isPlaying .Progress-bar {
+.Progress.is-playing .Progress-bar {
   background-color: $brandColorPrimary;
 
   &:after {

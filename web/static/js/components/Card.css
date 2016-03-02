@@ -56,7 +56,7 @@
     width: 100%;
   }
 
-  .AudioControls-play {
+  .AudioControls-playButton {
     width: 100px;
     height: 100px;
     left: 50%;
@@ -64,6 +64,13 @@
     margin-left: -50px;
     z-index: 1;
     transform: translateZ(0);
+  }
+
+  /* Play icon */
+  .AudioControls-playButton svg.play {
+    width: 26px;
+    height: 29px;
+    right: -.25em;
   }
 
   .AudioControls-skipBack,
