@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
+import Progress from './Progress'
 
 const init = {
   elapsed: 0,
@@ -24,7 +25,7 @@ export default class Player extends Component {
 
     this.updatePlayState = this.updatePlayState.bind(this)
 
-    mappedEvents.forEach(event => {
+    mappedEvents.forEach((event) => {
       this[event] = this[event].bind(this)
     })
 
@@ -34,7 +35,7 @@ export default class Player extends Component {
   componentDidMount () {
     this.player = findDOMNode(this.refs.player)
 
-    mappedEvents.forEach(event => {
+    mappedEvents.forEach((event) => {
       this.player.addEventListener(event, this[event])
     })
 
@@ -42,7 +43,7 @@ export default class Player extends Component {
   }
 
   componentWillUnmount () {
-    mappedEvents.forEach(event => {
+    mappedEvents.forEach((event) => {
       this.player.removeEventListener(event, this[event])
     })
   }
@@ -94,7 +95,9 @@ export default class Player extends Component {
 
     return <div>
       <audio ref='player' src={src} />
-      {secondsToTime(elapsed)} / {secondsToTime(total)}
+      <Progress percent={total / 100 * elapsed}>
+        {secondsToTime(total)}
+      </Progress>
     </div>
   }
 }

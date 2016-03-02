@@ -87,6 +87,10 @@ class PlayerPage extends Component {
     const track = episodes[currentTrack || 0]
 
     return <div id='PlayerPage'>
+      <button onClick={() => dispatch(play())}>Play</button>
+      <button onClick={() => dispatch(pause())}>Pause</button>
+      <button onClick={() => dispatch(prev())}>Prev</button>
+      <button onClick={() => dispatch(next())}>Next</button>
       {track && <Player
         src={track.audio}
         playing={playing}
@@ -97,12 +101,6 @@ class PlayerPage extends Component {
           {episode.headline}
         </Card>
       ))}
-      <ul>
-        <li><button onClick={() => dispatch(play())}>Play</button></li>
-        <li><button onClick={() => dispatch(pause())}>Pause</button></li>
-        <li><button onClick={() => dispatch(prev())}>Prev</button></li>
-        <li><button onClick={() => dispatch(next())}>Next</button></li>
-      </ul>
     </div>
   }
 }

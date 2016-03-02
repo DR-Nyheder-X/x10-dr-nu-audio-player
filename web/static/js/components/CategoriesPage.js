@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import Toggle from './Toggle'
 
 const categories = ['Twix', 'Mars', 'Snickers', 'Milkyway', 'Mælkesnitte']
