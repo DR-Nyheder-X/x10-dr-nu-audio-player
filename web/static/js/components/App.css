@@ -1,5 +1,11 @@
 @import '../utilities/base';
 
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; /* Disable selection/copy in UIWebView */
+}
+
 .App {
+  padding-top: 30px;
   background-color: $backgroundColor;
 }
