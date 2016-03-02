@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import Player from './Player'
+import Card from './Card'
+import Tabs from './Tabs'
+import Toggle from './Toggle'
 
 export default class KitchensinkPage extends Component {
   render () {
+
     return <div>
-      Kitchensink!
+      <Tabs />
+      <Card />
+      <Toggle>Boobs</Toggle>
+      <Toggle>Tofu</Toggle>
+      <Toggle>Spaceships</Toggle>
     </div>
   }
 }

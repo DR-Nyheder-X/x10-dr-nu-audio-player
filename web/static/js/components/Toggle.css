@@ -1,0 +1,26 @@
+@import '../utilities/variables';
+@import '../utilities/mixins';
+
+.Toggle {
+  margin-right: $spaceM;
+  margin-left: $spaceM;
+  margin-bottom: $spaceXs;
+  padding: .7em 1.1em .85em;
+  position: relative;
+}
+
+.Toggle svg {
+  position: absolute;
+  top: .9em;
+  right: 1.1em;
+}
+
+.Toggle--isOn {
+  @include onBox;
+}
+
+.Toggle--isOff {
+  @include offBox;
+  color: #8C8C8C;
+  svg > path { fill: #B2B2B2; }
+}
