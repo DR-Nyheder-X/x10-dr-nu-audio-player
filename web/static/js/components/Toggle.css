@@ -22,5 +22,5 @@
 .Toggle.is-off {
   @include offBox;
   color: #8C8C8C;
-  svg > path { fill: #B2B2B2; }
+  svg > path { fill: #D6D6D6; }
 }
