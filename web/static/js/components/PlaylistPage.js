@@ -61,7 +61,6 @@ class PlaylistPage extends Component {
   handlePlayPause (episode) {
     const { dispatch, playing, currentEpisode } = this.props
 
-    console.log(episode.id, currentEpisode.id)
     if (episode.id !== currentEpisode.id) {
       dispatch(play(episode))
     } else {
