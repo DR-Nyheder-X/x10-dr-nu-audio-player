@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { resolve } from 'redux-simple-promise'
+import { DragDropContext } from 'react-dnd'
+import TouchBackend from 'react-dnd-touch-backend'
 import {
   play, pause, prev, next
 } from '../Controls'
-import Card from './Card'
+import DraggableCard from './DraggableCard'
+import DraggableCardPreview from './DraggableCardPreview'
 import { get } from '../api'
 
 export const FETCH_EPISODES = 'playlist/FETCH_EPISODES'
@@ -12,6 +15,14 @@ export function fetchEpisodes () {
   return {
     type: FETCH_EPISODES,
     payload: { promise: get('/episodes') }
+  }
+}
+
+export const SET_EPISODES = 'playlist/SET_EPISODES'
+export function setEpisodes (episodes) {
+  return {
+    type: SET_EPISODES,
+    payload: episodes
   }
 }
 
@@ -24,6 +35,9 @@ export const reducer = function playlistReducer (state = init, action) {
 
     case resolve(FETCH_EPISODES):
       return { ...state, episodes: action.payload.data }
+
+    case SET_EPISODES:
+      return { ...state, episodes: action.payload }
 
     default: return state
   }
@@ -50,6 +64,7 @@ class PlaylistPage extends Component {
     super(props)
 
     this.handlePlayPause = this.handlePlayPause.bind(this)
+    this.moveCard = this.moveCard.bind(this)
   }
 
   componentDidMount () {
@@ -68,6 +83,13 @@ class PlaylistPage extends Component {
     }
   }
 
+  moveCard (dragIndex, hoverIndex) {
+    const { episodes } = this.props
+    const newEpisodes = Array.from(episodes)
+    newEpisodes.splice(hoverIndex, 0, newEpisodes.splice(dragIndex, 1)[0])
+    this.props.dispatch(setEpisodes(newEpisodes))
+  }
+
   render () {
     const {
       dispatch,
@@ -79,8 +101,10 @@ class PlaylistPage extends Component {
     } = this.props
 
     return <div id='PlaylistPage'>
-      {episodes.map((episode) => (
-        <Card key={episode.id}
+      {episodes.map((episode, i) => (
+        <DraggableCard key={episode.id}
+          id={episode.id}
+          index={i}
           big={episode.id === currentEpisode.id}
           playing={episode.id === currentEpisode.id && playing}
           episode={episode}
@@ -89,10 +113,14 @@ class PlaylistPage extends Component {
           onPlayPause={() => this.handlePlayPause(episode)}
           onPrev={() => dispatch(prev())}
           onNext={() => dispatch(next())}
+          moveCard={this.moveCard}
         />
       ))}
+      <DraggableCardPreview key='__preview' name='CARD' />
     </div>
   }
 }
 
-export default connect(stateToProps)(PlaylistPage)
+export default DragDropContext(TouchBackend({ enableMouseEvents: true }))(
+  connect(stateToProps)(PlaylistPage)
+)
