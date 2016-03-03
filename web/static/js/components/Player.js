@@ -2,9 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 import { connect } from 'react-redux'
 import { resolve } from 'redux-simple-promise'
-import { PLAY, PAUSE, play, pause, prev, next } from '../Controls'
+import { PLAY, PAUSE, PREV, play, pause, prev, next } from '../Controls'
 import { FETCH_EPISODES } from './PlaylistPage'
-import Progress from './Progress'
 
 export const ENDED = 'player/ENDED'
 export function ended () {
@@ -39,6 +38,13 @@ export const reducer = function playerReducer (state = init, action) {
 
     case PAUSE:
       return { ...state, playing: false }
+
+    case PREV: {
+      const id = state.currentEpisode.id
+      return { ...state, elapsed: Object.assign({}, {
+        [id]: Math.max(0, state.elapsed[id] - 10)
+      }) }
+    }
 
     case ELAPSED: return {
       ...state,
@@ -99,7 +105,7 @@ class Player extends Component {
       this.player.addEventListener(event, this[event])
     })
 
-    this.updatePlayState()
+    this.updatePlayState(this.props)
   }
 
   componentWillUnmount () {
@@ -108,12 +114,17 @@ class Player extends Component {
     })
   }
 
-  componentDidUpdate (props) {
-    this.updatePlayState()
+  componentDidUpdate (prevProps) {
+    this.updatePlayState(this.props)
+
+    const id = this.props.currentEpisode.id
+    if (this.props.elapsed[id] < prevProps.elapsed[id]) {
+      this.player.currentTime = this.props.elapsed[id]
+    }
   }
 
-  updatePlayState () {
-    if (this.props.playing) {
+  updatePlayState (props) {
+    if (props.playing) {
       this.player.play()
     } else {
       this.player.pause()
@@ -123,13 +134,9 @@ class Player extends Component {
   // Audio events
 
   playing (event) {
-    // const { onPlaying } = this.props
-    // onPlaying && onPlaying(event)
   }
 
   pause (event) {
-    // const { onPause } = this.props
-    // onPause && onPause(event)
   }
 
   ended (event) {

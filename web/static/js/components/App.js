@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { register } from '../store'
 import Player, { ENDED } from './Player'
-import { PREV, NEXT } from '../Controls'
+import { NEXT } from '../Controls'
 import './App.css'
 import Tabs from './Tabs'
 
@@ -38,7 +38,6 @@ function reducer (state = init, action) {
 
   switch (action.type) {
     case NEXT: return navigate(state, 1)
-    case PREV: return navigate(state, -1)
     case ENDED: return navigate(state, 1)
     default: return newState
   }
