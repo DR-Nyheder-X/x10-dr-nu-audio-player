@@ -4,11 +4,10 @@ import './Progress.css'
 export default function Progress ({ percent, children }) {
   percent = parseFloat(percent || 0, 10)
 
-  return <div className='Progress isPlaying'>
-    <div className='Progress-rail'>
-      <div className='Progress-bar' style={{width: percent + '%'}}></div>
-    </div>
+  return <div className='Progress'>
     <div className='Progress-duration'>{children}</div>
+    <input type="range" min="1" max="100" value={percent} />
+    <div className='Progress-bar' style={{width: percent + '%'}}></div>
   </div>
 }
 

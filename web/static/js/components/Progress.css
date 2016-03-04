@@ -2,60 +2,91 @@
 @import '../utilities/mixins';
 
 .Progress {
-  padding: 8px 11px 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.Progress .Progress-rail {
-  background-color: #E2E2E2;
-  width: 100%;
-  height: 3px;
-  border-radius: 3px;
-}
-
-.Progress .Progress-bar {
-  background-color: #000;
-  height: 3px;
-  border-radius: 3px;
   position: relative;
-  transition: background-color .2s ease, width .2s linear;
-
-  &:after {
-    content: "";
-    display: block;
-    width: 5px;
-    height: 5px;
-    background-color: #000;
-    position: absolute;
-    top: -1px;
-    right: -2.5px;
-    border-radius: 100%;
-    box-shadow: 1px 0 0 0 #fff;
-    transition: width .15s ease,
-                height .15s ease,
-                background-color .15s ease,
-                top .15s ease,
-                right .15s ease;
-  }
 }
 
 .Progress .Progress-duration {
-  font-size: .85em;
-  text-align: right;
-  white-space: nowrap;
-  min-width: 38px;
+  display: none;
 }
 
-.Progress.is-playing .Progress-bar {
-  background-color: $brandColorPrimary;
+.Progress input[type='range'] {
+  -webkit-appearance: none;
+  background: #D8D8D8;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: height .2s ease;
+}
 
-  &:after {
-    width: 7px;
-    height: 7px;
-    background-color: $brandColorPrimary;
-    top: -2px;
-    right: -3.5px;
+.Progress input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 0px;
+	height: 0px;
+	border-radius: 50%;
+  border: 2px solid transparent;
+  background-color: transparent;
+  transition: width .2s ease,
+              height .2s ease,
+              border-color .2s ease,
+              background-color .2s ease;
+}
+
+.Progress-bar {
+  background-color: $black;
+  height: 2px;
+  position: relative;
+  transition: height .2s ease;
+  z-index: 1;
+}
+
+.Progress.is-big {
+  input[type='range'] {
+    height: 4px;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+  	height: 10px;
+    background-color: $black;
+    border-color: $black;
+    position: relative;
+    z-index: 2;
+  }
+
+  .Progress-bar {
+    height: 4px;
+    background-color: $black !important;
   }
 }
+
+/* Themes */
+.Progress.Progress--purple .Progress-bar { background-color: $purple; }
+.Progress.Progress--purple.is-big input[type='range']::-webkit-slider-thumb { background-color: $purple; }
+
+.Progress.Progress--red .Progress-bar { background-color: $red; }
+.Progress.Progress--red.is-big input[type='range']::-webkit-slider-thumb { background-color: $red; }
+
+.Progress.Progress--aqua .Progress-bar { background-color: $aquaDark; }
+.Progress.Progress--aqua.is-big input[type='range']::-webkit-slider-thumb { background-color: $aqua; }
+
+.Progress.Progress--green .Progress-bar { background-color: $green; }
+.Progress.Progress--green.is-big input[type='range']::-webkit-slider-thumb { background-color: $green; }
+
+.Progress.Progress--blue .Progress-bar { background-color: $blue; }
+.Progress.Progress--blue.is-big input[type='range']::-webkit-slider-thumb { background-color: $blue; }
+
+.Progress.Progress--pink .Progress-bar { background-color: $pink; }
+.Progress.Progress--pink.is-big input[type='range']::-webkit-slider-thumb { background-color: $pink; }
+
+.Progress.Progress--yellow .Progress-bar { background-color: $black; }
+.Progress.Progress--yellow.is-big input[type='range']::-webkit-slider-thumb { background-color: $yellow; }
+
+.Progress.Progress--teal .Progress-bar { background-color: $teal; }
+.Progress.Progress--teal.is-big input[type='range']::-webkit-slider-thumb { background-color: $teal; }
+
+.Progress.Progress--orange .Progress-bar { background-color: $orange; }
+.Progress.Progress--orange.is-big input[type='range']::-webkit-slider-thumb { background-color: $orange; }
+
+.Progress.Progress--black .Progress-bar { background-color: $black; }
+.Progress.Progress--black.is-big input[type='range']::-webkit-slider-thumb { background-color: $black; }
