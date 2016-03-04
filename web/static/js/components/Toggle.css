@@ -1,26 +1,98 @@
 @import '../utilities/variables';
 @import '../utilities/mixins';
 
+@mixin toggleTheme($backgroundColor, $borderColor){
+  &:before { background-color: $backgroundColor; }
+  &:after { background-color: $borderColor; }
+}
+
 .Toggle {
   margin-right: $spaceM;
   margin-left: $spaceM;
-  margin-bottom: $spaceXs;
-  padding: .7em 1.1em .85em;
+  margin-bottom: 10px;
+  padding: .8em 1.25em .85em;
   position: relative;
-}
+  line-height: 1;
+  transition: background-color .2s ease,
+              color .2s ease;
 
-.Toggle svg {
-  position: absolute;
-  top: .9em;
-  right: 1.1em;
+  /* Decoration border */
+  &:after,
+  &:before {
+    content: "";
+    display: block;
+    width: 6px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $black;
+    transition: background-color .2s ease;
+  }
+
+  &:after {
+    top: auto;
+    bottom: auto;
+    bottom: -2px;
+    height: 2px;
+    background-color: $black;
+  }
+
 }
 
 .Toggle.is-on {
   @include onBox;
+  box-shadow: 0 2px 0 0 #D8D8D8;
 }
 
 .Toggle.is-off {
   @include offBox;
-  color: #8C8C8C;
-  svg > path { fill: #D6D6D6; }
+  color: #ABABAB;
+  @include toggleTheme(#CECECE, #BEBEBE);
 }
+
+/* Switch is off */
+.Toggle-switch {
+  width: 24px;
+  height: 12px;
+  background-color: #CECECE;
+  border-radius: 12px;
+  position: absolute;
+  top: .95em;
+  right: 1em;
+  transition: background-color .2s ease;
+
+  > span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #999999;
+    border-radius: 12px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left .2s ease,
+                background-color .2s ease;
+  }
+}
+
+/* Switch is on */
+.Toggle.is-on .Toggle-switch {
+  background-color: #D8D8D8;
+  > span {
+    background-color: $black;
+    left: 12px;
+  }
+}
+
+/* Themes */
+.Toggle--purple { @include toggleTheme($purple, $purpleDark); }
+.Toggle--red    { @include toggleTheme($red, $redDark); }
+.Toggle--aqua   { @include toggleTheme($aqua, $aquaDark); }
+.Toggle--green  { @include toggleTheme($green, $greenDark); }
+.Toggle--blue   { @include toggleTheme($blue, $blueDark); }
+.Toggle--pink   { @include toggleTheme($pink, $pinkDark); }
+.Toggle--yellow { @include toggleTheme($yellow, $yellowDark); }
+.Toggle--teal   { @include toggleTheme($teal, $tealDark); }
+.Toggle--orange { @include toggleTheme($purple, $purpleDark); }
+.Toggle--black  { @include toggleTheme($black, $black); }

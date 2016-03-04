@@ -17,7 +17,7 @@ export default class KitchensinkPage extends Component {
       <Progress>2 min</Progress>
       <Progress percent={34}>6 yrs</Progress>
       <Progress percent={100}>2:34</Progress>
-      <Toggle checked>Boobs</Toggle>
+      <Toggle theme='purple' checked>Boobs</Toggle>
       <Toggle checked={false}>Tofu</Toggle>
       <Toggle>Spaceships</Toggle>
     </div>
