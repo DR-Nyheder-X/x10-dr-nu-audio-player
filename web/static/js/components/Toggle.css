@@ -7,8 +7,8 @@
 }
 
 .Toggle {
-  margin-right: $spaceM;
-  margin-left: $spaceM;
+  margin-right: $spaceXs;
+  margin-left: $spaceXs;
   margin-bottom: 10px;
   padding: .8em 1.25em .85em;
   position: relative;
@@ -37,7 +37,8 @@
     height: 2px;
     background-color: $black;
   }
-
+  
+  @media (min-width: 375px) { margin-right: $spaceM; margin-left: $spaceM; }
 }
 
 .Toggle.is-on {

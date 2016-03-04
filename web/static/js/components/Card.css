@@ -3,8 +3,9 @@
 
 .Card {
   margin-bottom: $spaceXs;
-  margin-right: $spaceM;
-  margin-left: $spaceM;
+  margin-right: $spaceXs;
+  margin-left: $spaceXs;
+  @media (min-width: 375px) { margin-right: $spaceM; margin-left: $spaceM; }
 }
 
 .Card-inner {

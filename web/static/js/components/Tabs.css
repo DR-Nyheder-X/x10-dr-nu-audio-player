@@ -3,9 +3,10 @@
 
 .Tabs {
   position: relative;
-  margin-right: $spaceM;
-  margin-left: $spaceM;
+  margin-right: $spaceXs;
+  margin-left: $spaceXs;
   margin-bottom: $spaceXs;
+  @media (min-width: 375px) { margin-right: $spaceM; margin-left: $spaceM; }
 }
 
 .Tabs .Tabs-inner {
