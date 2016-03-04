@@ -6,7 +6,6 @@
   margin-right: $spaceM;
   margin-left: $spaceM;
   margin-bottom: $spaceXs;
-  margin-top: 1px;
 }
 
 .Tabs .Tabs-inner {
@@ -17,44 +16,33 @@
 .Tabs .Tabs-tab {
   width: 50%;
   height: 40px;
-  color: #7F7F7F;
+  color: #8D8D8D;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: color .15s ease .1s;
+  transition: color .45s ease;
   text-decoration: none;
-}
-
-.Tabs .Tabs-tab svg {
-  margin-right: .5em;
 }
 
 .Tabs .Tabs-highlighter {
   @include onBox;
   width: 50%;
-  height: 42px;
+  height: 40px;
   position: absolute;
-  top: -1px;
+  top: 0;
   left: 0;
   z-index: 0;
-  transition: left .15s ease;
-}
-
-.Tabs-tab--first svg > g,
-.Tabs-tab--second svg circle {
-  transition: fill .15s ease .1s;
+  transition: left .125s ease;
+  box-shadow: 0 2px 0 0 #D8D8D8;
 }
 
 .Tabs.is-firstTabActive {
   .Tabs-highlighter { left: 0; }
-  .Tabs-tab--first { color: $brandColorPrimary; }
-  .Tabs-tab--first svg > g { fill: $brandColorPrimary; }
+  .Tabs-tab--first { color: $black; }
 }
 
 .Tabs.is-secondTabActive {
   .Tabs-highlighter { left: 50%; }
-  .Tabs-tab--second { color: $brandColorPrimary; }
-  .Tabs-tab--second svg .a { fill: $brandColorPrimary; }
-  .Tabs-tab--second svg .b { fill: #C4C4C4; }
+  .Tabs-tab--second { color: $black; }
 }
