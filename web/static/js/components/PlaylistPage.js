@@ -6,8 +6,7 @@ import TouchBackend from 'react-dnd-touch-backend'
 import {
   play, pause, prev, next
 } from '../Controls'
-import DraggableCard from './DraggableCard'
-import DraggableCardPreview from './DraggableCardPreview'
+import Card from './Card'
 import { get } from '../api'
 
 export const FETCH_EPISODES = 'playlist/FETCH_EPISODES'
@@ -102,9 +101,7 @@ class PlaylistPage extends Component {
 
     return <div id='PlaylistPage'>
       {episodes.map((episode, i) => (
-        <DraggableCard key={episode.id}
-          id={episode.id}
-          index={i}
+        <Card key={episode.id}
           big={episode.id === currentEpisode.id}
           playing={episode.id === currentEpisode.id && playing}
           episode={episode}
@@ -113,10 +110,8 @@ class PlaylistPage extends Component {
           onPlayPause={() => this.handlePlayPause(episode)}
           onPrev={() => dispatch(prev())}
           onNext={() => dispatch(next())}
-          moveCard={this.moveCard}
         />
       ))}
-      <DraggableCardPreview key='__preview' name='CARD' />
     </div>
   }
 }
