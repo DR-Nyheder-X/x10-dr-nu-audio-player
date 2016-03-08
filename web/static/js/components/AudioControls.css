@@ -2,78 +2,142 @@
 @import '../utilities/mixins';
 
 .AudioControls {
+  height: 36px;
   position: relative;
-  height: 56px;
-  width: 50px;
-  overflow: hidden;
-  transition: height .2s ease,
-              width .2s ease;
 }
 
-.AudioControls .AudioControls-playButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 36px;
-  height: 36px;
+.AudioControls .AudioControls-next {
+  width: 47px;
+  height: 47px;
   background-color: #E8E8E8;
   border-radius: 100%;
   position: absolute;
-  left: 14px;
-  top: 14px;
-  transition: left .2s ease,
-              top .2s ease,
-              width .2s ease,
-              height .2s ease,
-              margin .2s ease,
-              background-color .2s ease;
+  left: 50%;
+  top: 0;
+  transform: scale(.5, .5) translate(-280px, 10px);
+  @media (min-width: 375px) { transform: scale(.5, .5) translate(-320px, 10px); }
+  @media (min-width: 414px) { transform: scale(.5, .5) translate(-360px, 10px); }
+  box-shadow: inset 0 0 0 2px $black;
+  transition: transform .15s;
 
-  /* Pause icon */
-  svg.pause { display: none; }
+  > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-44%, -50%);
+  }
+
+  &:active {
+    box-shadow: inset 0 0 0 2px #fff;
+    background-color: $black;
+    > svg path { fill: #fff; }
+  }
+}
+
+.AudioControls .AudioControls-skipBack {
+  width: 47px;
+  height: 47px;
+  background-color: #E8E8E8;
+  border-radius: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: scale(.5, .5) translate(-280px, 10px);
+  @media (min-width: 375px) { transform: scale(.5, .5) translate(-320px, 10px); }
+  @media (min-width: 414px) { transform: scale(.5, .5) translate(-360px, 10px); }
+  box-shadow: inset 0 0 0 2px $black;
+  transition: transform .15s;
+  font-size: 12px;
+  text-align: center;
+  line-height: 56px;
+  letter-spacing: -.035em;
+
+  > svg {
+    position: absolute;
+    top: 9px;
+    left: 21px;
+  }
+
+  &:active {
+    box-shadow: inset 0 0 0 2px #fff;
+    background-color: $black;
+    color: #fff;
+    > svg path { fill: #fff; }
+  }
+}
+
+.AudioControls .AudioControls-playButton {
+  width: 100px;
+  height: 100px;
+  background-color: #E8E8E8;
+  border-radius: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scale(.36, .36) translate(-55px, -55px);
+  box-shadow: inset 0 0 0 6px $black;
+  z-index: 1;
+  transition: transform .15s,
+              background-color .15s,
+              box-shadow .15s;
+  &:active {
+    transition: transform .2s;
+    background-color: $black;
+    box-shadow: inset 0 0 0 2px $black;
+    > svg path { fill: #fff; }
+  }
+}
+
+.AudioControls .AudioControls-playButton svg.play,
+.AudioControls .AudioControls-playButton svg.pause {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/* Play icon */
+.AudioControls .AudioControls-playButton svg.pause {
+  transform: translate(-50%, -50%);
+  opacity: 0;
 }
 
 /* Play icon */
 .AudioControls .AudioControls-playButton svg.play {
-  width: 12px;
-  height: 14px;
-  position: relative;
-  right: -.125em;
-  transition: right .2s ease,
-              width .2s ease,
-              height .2s ease;
+  transform: translate(-35%, -50%) scale(1.3, 1.3);
+  opacity: 1;
 }
-
-/* Pause icon */
-.AudioControls .AudioControls-playButton svg.pause {
-  width: 12px;
-  height: 14px;
-  transition: width .2s ease,
-              height .2s ease;
-}
-
 
 /* Playing state */
 .AudioControls-playButton.is-playing {
   background-color: $brandColorPrimary;
-
-  svg.play { display: none; }
-
-  svg.pause { display: block; }
+  svg.play { transform: translate(-35%, -50%); opacity: 0; }
+  svg.pause { transform: translate(-50%, -50%); opacity: 1;}
 }
 
-.AudioControls .AudioControls-skipBack,
-.AudioControls .AudioControls-next {
-  margin-left: 0;
-  top: 0px;
-  left: 50%;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
+/* When Card is big */
+.Card.is-big {
+  .AudioControls {
+    height: 190px;
+  }
 
-  &:active {
-    color: $brandColorPrimary;
-    svg > path { fill: $brandColorPrimary; }
+  .AudioControls .AudioControls-playButton {
+    transform: scale(1, 1) translate(98px, 34px);
+    box-shadow: inset 0 0 0 2px $black;
+    @media (min-width: 375px) { transform: scale(1, 1) translate(117.5px, 34px); }
+    @media (min-width: 414px) { transform: scale(1, 1) translate(137px, 34px); }
+
+    svg.play {
+      transform: translate(-35%, -50%) scale(1, 1);
+    }
+
+    &:active {
+      box-shadow: inset 0 0 0 2px #fff;
+    }
+  }
+  .AudioControls .AudioControls-next {
+    transform: scale(1, 1) translate(68px, 60px);
+  }
+  .AudioControls .AudioControls-skipBack {
+    transform: scale(1, 1) translate(-115px, 60px);
   }
 }
