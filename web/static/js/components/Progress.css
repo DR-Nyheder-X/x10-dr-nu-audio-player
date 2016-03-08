@@ -62,30 +62,39 @@
 
 /* Themes */
 .Progress.Progress--purple .Progress-bar { background-color: $purple; }
+.Progress.Progress--purple.is-big input[type='range'] { background-color: $purpleDark; }
 .Progress.Progress--purple.is-big input[type='range']::-webkit-slider-thumb { background-color: $purple; }
 
 .Progress.Progress--red .Progress-bar { background-color: $red; }
+.Progress.Progress--red.is-big input[type='range'] { background-color: $redDark; }
 .Progress.Progress--red.is-big input[type='range']::-webkit-slider-thumb { background-color: $red; }
 
 .Progress.Progress--aqua .Progress-bar { background-color: $aquaDark; }
+.Progress.Progress--aqua.is-big input[type='range'] { background-color: $aquaDark; }
 .Progress.Progress--aqua.is-big input[type='range']::-webkit-slider-thumb { background-color: $aqua; }
 
 .Progress.Progress--green .Progress-bar { background-color: $green; }
+.Progress.Progress--green.is-big input[type='range'] { background-color: $greenDark; }
 .Progress.Progress--green.is-big input[type='range']::-webkit-slider-thumb { background-color: $green; }
 
 .Progress.Progress--blue .Progress-bar { background-color: $blue; }
+.Progress.Progress--blue.is-big input[type='range'] { background-color: $blueDark; }
 .Progress.Progress--blue.is-big input[type='range']::-webkit-slider-thumb { background-color: $blue; }
 
 .Progress.Progress--pink .Progress-bar { background-color: $pink; }
+.Progress.Progress--pink.is-big input[type='range'] { background-color: $pinkDark; }
 .Progress.Progress--pink.is-big input[type='range']::-webkit-slider-thumb { background-color: $pink; }
 
 .Progress.Progress--yellow .Progress-bar { background-color: $black; }
+.Progress.Progress--yellow.is-big input[type='range'] { background-color: $yellowDark; }
 .Progress.Progress--yellow.is-big input[type='range']::-webkit-slider-thumb { background-color: $yellow; }
 
 .Progress.Progress--teal .Progress-bar { background-color: $teal; }
+.Progress.Progress--teal.is-big input[type='range'] { background-color: $tealDark; }
 .Progress.Progress--teal.is-big input[type='range']::-webkit-slider-thumb { background-color: $teal; }
 
 .Progress.Progress--orange .Progress-bar { background-color: $orange; }
+.Progress.Progress--orange.is-big input[type='range'] { background-color: $orangeDark; }
 .Progress.Progress--orange.is-big input[type='range']::-webkit-slider-thumb { background-color: $orange; }
 
 .Progress.Progress--black .Progress-bar { background-color: $black; }
