@@ -13,7 +13,7 @@ defmodule App.Episode do
   end
 
   @required_fields ~w(headline description duration audio authors)
-  @optional_fields ~w()
+  @optional_fields ~w(color)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
