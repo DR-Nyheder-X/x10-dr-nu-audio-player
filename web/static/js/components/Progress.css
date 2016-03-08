@@ -6,7 +6,16 @@
 }
 
 .Progress .Progress-duration {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  bottom: 8px;
+  right: 9px;
+  transition: opacity .15s;
+}
+
+.Card.is-big .Progress .Progress-duration {
+  opacity: 1;
+  font-size: 12px;
 }
 
 .Progress input[type='range'] {
