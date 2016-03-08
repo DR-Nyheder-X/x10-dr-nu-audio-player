@@ -9,7 +9,7 @@
 .AudioControls .AudioControls-next {
   width: 47px;
   height: 47px;
-  background-color: #E8E8E8;
+  background-color: #fff;
   border-radius: 100%;
   position: absolute;
   left: 50%;
@@ -37,7 +37,7 @@
 .AudioControls .AudioControls-skipBack {
   width: 47px;
   height: 47px;
-  background-color: #E8E8E8;
+  background-color: #fff;
   border-radius: 100%;
   position: absolute;
   left: 50%;
@@ -69,7 +69,7 @@
 .AudioControls .AudioControls-playButton {
   width: 100px;
   height: 100px;
-  background-color: #E8E8E8;
+  background-color: #fff;
   border-radius: 100%;
   position: absolute;
   left: 0;

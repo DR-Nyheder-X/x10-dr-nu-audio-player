@@ -17,6 +17,7 @@
   @include onBox;
   position: relative;
   min-height: 61px;
+  transition: background-color .15s;
 }
 
 .Card-title {
@@ -33,12 +34,21 @@
 
 /* Big state */
 .Card.is-big {
-  .Card-content {
-  }
-
   .Card-title {
     text-align: center;
     justify-content: center;
     transform: translate(37px, -33px);
   }
 }
+
+/* Card themes */
+.Card--purple.is-big .Card-content { background-color: $purple; }
+.Card--red.is-big .Card-content    { background-color: $red; }
+.Card--aqua.is-big .Card-content   { background-color: $aqua; }
+.Card--green.is-big .Card-content  { background-color: $green; }
+.Card--blue.is-big .Card-content   { background-color: $blue; }
+.Card--pink.is-big .Card-content   { background-color: $pink; }
+.Card--yellow.is-big .Card-content { background-color: $yellow; }
+.Card--teal.is-big .Card-content   { background-color: $teal; }
+.Card--orange.is-big .Card-content { background-color: $orange; }
+.Card--black.is-big .Card-content  { background-color: #fff; }
