@@ -18,7 +18,7 @@
   @media (min-width: 375px) { transform: scale(.5, .5) translate(-320px, 10px); }
   @media (min-width: 414px) { transform: scale(.5, .5) translate(-360px, 10px); }
   box-shadow: inset 0 0 0 2px $black;
-  transition: transform .15s;
+  transition: transform .15s, box-shadow .15s;
 
   > svg {
     position: absolute;
@@ -46,7 +46,7 @@
   @media (min-width: 375px) { transform: scale(.5, .5) translate(-320px, 10px); }
   @media (min-width: 414px) { transform: scale(.5, .5) translate(-360px, 10px); }
   box-shadow: inset 0 0 0 2px $black;
-  transition: transform .15s;
+  transition: transform .15s, box-shadow .15s;
   font-size: 12px;
   text-align: center;
   line-height: 56px;
@@ -121,7 +121,7 @@
 
   .AudioControls .AudioControls-playButton {
     transform: scale(1, 1) translate(98px, 34px);
-    box-shadow: inset 0 0 0 2px $black;
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px #efefef;
     background-color: #fff;
     @media (min-width: 375px) { transform: scale(1, 1) translate(117.5px, 34px); }
     @media (min-width: 414px) { transform: scale(1, 1) translate(137px, 34px); }
@@ -138,13 +138,27 @@
   }
   .AudioControls .AudioControls-next {
     transform: scale(1, 1) translate(68px, 60px);
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px #efefef;
+    z-index: 2;
   }
   .AudioControls .AudioControls-skipBack {
     transform: scale(1, 1) translate(-115px, 60px);
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px #efefef;
+    z-index: 2;
   }
 }
 
-/* Themes */
+/* Shadows */
+.AudioControls-shadow {
+  background-color: #efefef;
+  width: 128px;
+  height: 128px;
+  border-radius: 128px;
+  position: absolute;
+  z-index: 2;
+}
+
+/* Themes for play button when card is small */
 .Card--purple .AudioControls-playButton { box-shadow: inset 0 0 0 6px $purpleDark; background-color: $purple; }
 .Card--red .AudioControls-playButton { box-shadow: inset 0 0 0 6px $redDark; background-color: $red; }
 .Card--aqua .AudioControls-playButton { box-shadow: inset 0 0 0 6px $aquaDark; background-color: $aqua; }
@@ -154,6 +168,128 @@
 .Card--yellow .AudioControls-playButton { box-shadow: inset 0 0 0 6px $yellowDark; background-color: $yellow; }
 .Card--teal .AudioControls-playButton { box-shadow: inset 0 0 0 6px $tealDark; background-color: $teal; }
 .Card--orange .AudioControls-playButton { box-shadow: inset 0 0 0 6px $orangeDark; background-color: $orange; }
-.Card--black .AudioControls-playButton { box-shadow: inset 0 0 0 6px $black; background-color: $black; }
+.Card--black .AudioControls-playButton {
+  box-shadow: inset 0 0 0 6px $black; background-color: $black;
+  > svg path { fill: #fff; }
+}
 
+/* Default */
 .Card .AudioControls.is-big .AudioControls-playButton { box-shadow: inset 0 0 0 6px $black; background-color: #fff; }
+
+/* Themes for AudioControls when card is big */
+.Card.Card--purple.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $purpleDark; }
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $purpleDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $purpleDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--red.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $redDark; }
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $redDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $redDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--aqua.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $aquaDark; }
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $aquaDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $aquaDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--green.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $greenDark; }
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $greenDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $greenDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--blue.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $blueDark; }
+
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $blueDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $blueDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--pink.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $pinkDark; }
+
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $pinkDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $pinkDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--yellow.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $yellowDark; }
+
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $yellowDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $yellowDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--teal.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $tealDark; }
+
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $tealDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $tealDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--orange.is-big {
+  .AudioControls-playButton { box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $orangeDark; }
+
+  .AudioControls-next {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $orangeDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+  .AudioControls-skipBack {
+    box-shadow: inset 0 0 0 2px $black, 0 0 0 14px $orangeDark;
+    &:active { box-shadow: inset 0 0 0 2px #fff; }
+  }
+}
+
+.Card.Card--black.is-big {
+  .AudioControls-playButton > svg path { fill: $black; }
+}

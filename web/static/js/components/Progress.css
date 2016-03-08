@@ -73,7 +73,7 @@
 .Progress.Progress--aqua.is-big input[type='range'] { background-color: $aquaDark; }
 .Progress.Progress--aqua.is-big input[type='range']::-webkit-slider-thumb { background-color: $aqua; }
 
-.Progress.Progress--green .Progress-bar { background-color: $green; }
+.Progress.Progress--green .Progress-bar { background-color: $greenDark; }
 .Progress.Progress--green.is-big input[type='range'] { background-color: $greenDark; }
 .Progress.Progress--green.is-big input[type='range']::-webkit-slider-thumb { background-color: $green; }
 
