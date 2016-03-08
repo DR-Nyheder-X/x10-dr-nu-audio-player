@@ -16,7 +16,8 @@ defmodule App.Api.V1.EpisodeView do
       description: episode.description,
       duration: episode.duration,
       audio: episode.audio,
-      authors: episode.authors
+      authors: episode.authors,
+      color: episode.color
     }
   end
 end

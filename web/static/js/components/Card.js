@@ -6,6 +6,7 @@ import './Card.css'
 
 export default function Card ({
   big,
+  color,
   duration,
   elapsed,
   episode,
@@ -16,7 +17,7 @@ export default function Card ({
 }) {
   const cls = classname('Card', {
     'is-big': big
-  })
+  }, color && `Card--${color}`)
 
   return <div className={cls}>
     <div className='Card-inner'>
@@ -25,7 +26,7 @@ export default function Card ({
         <div className='Card-title'>
           {episode.headline}
         </div>
-        <Progress percent={duration && Math.ceil(elapsed / duration * 100)}>
+        <Progress color={color} percent={duration && Math.ceil(elapsed / duration * 100)}>
           {episode.duration}
         </Progress>
       </div>

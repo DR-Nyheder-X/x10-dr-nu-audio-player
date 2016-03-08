@@ -7,6 +7,7 @@ defmodule App.Episode do
     field :duration, :string
     field :audio, :string
     field :authors, :string
+    field :color, :string
 
     timestamps
   end

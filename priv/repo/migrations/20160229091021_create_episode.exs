@@ -8,6 +8,7 @@ defmodule App.Repo.Migrations.CreateEpisode do
       add :duration, :string
       add :audio, :string
       add :authors, :string
+      add :color, :string
 
       timestamps
     end

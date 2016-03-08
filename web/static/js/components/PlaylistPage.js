@@ -103,6 +103,7 @@ class PlaylistPage extends Component {
       {episodes.map((episode, i) => (
         <Card key={episode.id}
           big={episode.id === currentEpisode.id}
+          color={episode.color}
           playing={episode.id === currentEpisode.id && playing}
           episode={episode}
           elapsed={elapsed[episode.id]}

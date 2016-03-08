@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react'
+import classname from 'classname'
 import './Progress.css'
 
-export default function Progress ({ percent, children }) {
+export default function Progress ({ percent, children, color }) {
   percent = parseFloat(percent || 0, 10)
 
-  return <div className='Progress'>
+  const cls = classname('Progress', color && `Progress--${color}`)
+
+  return <div className={cls}>
     <div className='Progress-duration'>{children}</div>
-    <input type="range" min="1" max="100" value={percent} />
+    <input type='range' min='1' max='100' value={percent} />
     <div className='Progress-bar' style={{width: percent + '%'}}></div>
   </div>
 }
