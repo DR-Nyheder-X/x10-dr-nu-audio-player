@@ -13,6 +13,7 @@ export default function Card ({
   onNext,
   onPlayPause,
   onPrev,
+  onScrub,
   playing
 }) {
   const cls = classname('Card', {
@@ -26,7 +27,7 @@ export default function Card ({
         <div className='Card-title'>
           {episode.headline}
         </div>
-        <Progress color={color} percent={duration && Math.ceil(elapsed / duration * 100)} big={big}>
+        <Progress color={color} total={duration} position={elapsed} big={big} onChange={onScrub}>
           {episode.duration}
         </Progress>
       </div>

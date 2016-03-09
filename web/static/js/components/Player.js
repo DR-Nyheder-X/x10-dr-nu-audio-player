@@ -20,11 +20,17 @@ export function setDuration ({episode, duration}) {
   return { type: SET_DURATION, payload: {episode, duration} }
 }
 
+export const SCRUB_TO = 'player/SCRUB_TO'
+export function scrubTo (position) {
+  return { type: SCRUB_TO, payload: position }
+}
+
 export const init = {
   elapsed: {},
   duration: {},
   playing: false,
-  currentEpisode: null
+  currentEpisode: null,
+  scrubTo: null
 }
 
 export const reducer = function playerReducer (state = init, action) {
@@ -41,9 +47,10 @@ export const reducer = function playerReducer (state = init, action) {
 
     case PREV: {
       const id = state.currentEpisode.id
-      return { ...state, elapsed: Object.assign({}, {
+      return { ...state, elapsed: {
+        ...state.elapsed,
         [id]: Math.max(0, state.elapsed[id] - 10)
-      }) }
+      } }
     }
 
     case ELAPSED: return {
@@ -62,6 +69,9 @@ export const reducer = function playerReducer (state = init, action) {
       }
     }
 
+    case SCRUB_TO:
+      return { ...state, scrubTo: action.payload }
+
     case resolve(FETCH_EPISODES):
       return { ...state, currentEpisode: action.payload.data[0] || null }
 
@@ -73,7 +83,8 @@ const stateToProps = (state) => ({
   elapsed: state.app.player.elapsed,
   duration: state.app.player.duration,
   playing: state.app.player.playing,
-  currentEpisode: state.app.player.currentEpisode
+  currentEpisode: state.app.player.currentEpisode,
+  scrubTo: state.app.player.scrubTo
 })
 
 const mappedEvents = [
@@ -85,7 +96,8 @@ class Player extends Component {
     elapsed: PropTypes.object.isRequired,
     duration: PropTypes.object.isRequired,
     playing: PropTypes.bool.isRequired,
-    currentEpisode: PropTypes.object
+    currentEpisode: PropTypes.object,
+    scrubTo: PropTypes.number
   }
 
   constructor (props) {
@@ -120,6 +132,10 @@ class Player extends Component {
     const id = this.props.currentEpisode.id
     if (this.props.elapsed[id] < prevProps.elapsed[id]) {
       this.player.currentTime = this.props.elapsed[id]
+    }
+
+    if (this.props.scrubTo !== prevProps.scrubTo) {
+      this.player.currentTime = this.props.scrubTo
     }
   }
 

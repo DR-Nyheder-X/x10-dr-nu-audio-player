@@ -6,6 +6,7 @@ import TouchBackend from 'react-dnd-touch-backend'
 import {
   play, pause, prev, next
 } from '../Controls'
+import { scrubTo } from './Player'
 import Card from './Card'
 import { get } from '../api'
 
@@ -111,6 +112,9 @@ class PlaylistPage extends Component {
           onPlayPause={() => this.handlePlayPause(episode)}
           onPrev={() => dispatch(prev())}
           onNext={() => dispatch(next())}
+          onScrub={(e) => {
+            dispatch(scrubTo(parseInt(e.target.value, 10)))
+          }}
         />
       ))}
     </div>

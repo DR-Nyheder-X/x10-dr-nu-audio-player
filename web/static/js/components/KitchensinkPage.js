@@ -14,9 +14,11 @@ export default class KitchensinkPage extends Component {
       <Tabs path='/' />
       <Card episode={exampleEpisode}>Hvorfor er du ikke startet til palæo-yoghurt endnu?</Card>
       <Card episode={exampleEpisode} big>Hvorfor er du ikke startet til palæo-yoghurt endnu?</Card>
+      <Card episode={exampleEpisode} big color='green'>Hvorfor er du ikke startet til palæo-yoghurt endnu?</Card>
       <Progress>2 min</Progress>
       <Progress percent={34}>6 yrs</Progress>
       <Progress percent={100}>2:34</Progress>
+      <Progress percent={100} color='purple' big>2:34</Progress>
       <Toggle theme='purple' checked>Boobs</Toggle>
       <Toggle checked={false}>Tofu</Toggle>
       <Toggle>Spaceships</Toggle>
