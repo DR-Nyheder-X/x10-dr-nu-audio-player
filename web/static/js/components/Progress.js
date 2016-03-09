@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react'
 import classname from 'classname'
 import './Progress.css'
 
-export default function Progress ({ percent, children, color }) {
+export default function Progress ({ percent, children, color, big }) {
   percent = parseFloat(percent || 0, 10)
 
-  const cls = classname('Progress', color && `Progress--${color}`)
+  const cls = classname('Progress', {
+    'is-big': big
+  }, color && `Progress--${color}`)
 
   return <div className={cls}>
     <div className='Progress-duration'>{children}</div>

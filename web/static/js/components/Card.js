@@ -26,7 +26,7 @@ export default function Card ({
         <div className='Card-title'>
           {episode.headline}
         </div>
-        <Progress color={color} percent={duration && Math.ceil(elapsed / duration * 100)}>
+        <Progress color={color} percent={duration && Math.ceil(elapsed / duration * 100)} big={big}>
           {episode.duration}
         </Progress>
       </div>
