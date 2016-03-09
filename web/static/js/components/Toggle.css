@@ -37,7 +37,7 @@
     height: 2px;
     background-color: $black;
   }
-  
+
   @media (min-width: 375px) { margin-right: $spaceM; margin-left: $spaceM; }
 }
 
@@ -95,5 +95,5 @@
 .Toggle--pink   { @include toggleTheme($pink, $pinkDark); }
 .Toggle--yellow { @include toggleTheme($yellow, $yellowDark); }
 .Toggle--teal   { @include toggleTheme($teal, $tealDark); }
-.Toggle--orange { @include toggleTheme($purple, $purpleDark); }
+.Toggle--orange { @include toggleTheme($orange, $orangeDark); }
 .Toggle--black  { @include toggleTheme($black, $black); }
