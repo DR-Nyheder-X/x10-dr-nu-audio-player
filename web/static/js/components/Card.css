@@ -17,7 +17,8 @@
   @include onBox;
   position: relative;
   min-height: 61px;
-  transition: background-color .15s;
+  background-color: #fff;
+  transition: background-color .1s .15s;
 }
 
 .Card-title {
