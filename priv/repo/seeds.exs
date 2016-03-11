@@ -13,6 +13,8 @@ colors = [
   "black"
 ]
 
+Repo.delete_all Episode
+
 Repo.insert!(%Episode{
   headline: "Hvorfor er Eva Kjer Hansen stadig minister?",
   description: "Efter et møde med partilederne fra blå-blok, fortsætter både regeringen og Eva Kjer Hansen som miljø- og landbrugsminister. Til trods for flere eksperter dømte Eva Kjer Hansen ude.",
@@ -220,4 +222,39 @@ Repo.insert!(%Episode{
   color: Enum.at(colors, 3)
 })
 
+Repo.insert!(%Episode{
+  headline: "Skal SU'en afskaffes?",
+  description: "Et ekspertpanel har vurderet, at det vil være smart, hvis man afskaffer SU støtten på landets kandidatudannelser",
+  duration: "01:47",
+  authors: "Jennifer Kreams",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/Afskaf%20SU.mp3",
+  color: Enum.at(colors, 4)
+})
+
+Repo.insert!(%Episode{
+  headline: "17-årig flygtning til OL",
+  description: "OL nedsætter et hold udelukkende bestående af flygtninge. Her er en 17-årig pige en mulig deltager. Hør hendes vanvittige historie.",
+  duration: "02:06",
+  authors: "Anna Sofie ",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/Flygtninge%20OL.mp3",
+  color: Enum.at(colors, 5)
+})
+
+Repo.insert!(%Episode{
+  headline: "Afslutning i pædofilisag fra Randers",
+  description: "En 38-årig mand har fået sin straf for overgreb mod børn, og for at medvirker til et international børneporno netværk.",
+  duration: "01:19",
+  authors: "Niklas Jakobsen",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/P%C3%A6dofili%20d%C3%B8mt.mp3",
+  color: Enum.at(colors, 6)
+})
+
+Repo.insert!(%Episode{
+  headline: "Ny sæson af House of Cards",
+  description: "Endelig kom der en ny sæson. Vi samler op og fortæller om seriens begyndelse. Alt sammen, så du er helt klar til at se den nye sæson",
+  duration: "02:10",
+  authors: "Oliver Breum",
+  audio: "http://brnbw-drex.s3.amazonaws.com/seed/House%20of%20Cards.mp3",
+  color: Enum.at(colors, 7)
+})
 
